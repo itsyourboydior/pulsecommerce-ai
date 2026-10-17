@@ -1,31 +1,36 @@
-# Merchant Knowledge Base: Supplier Policies & Promotion Guidelines
+# Retail Commerce Knowledge Base: Multi-Merchant Policies & Supplier Terms
 
-## 1. Supplier Terms and SLAs
-- **Global Retail Supplies Ltd (SKU001 - SKU010)**
-  - Standard Lead Time: 3 weeks
-  - Minimum Order Quantity (MOQ): 100 units
-  - Payment Terms: Net 30
-  - Contact: orders@globalsupplies.example.com
-  - Expedited delivery available: 1 week lead time with +10% freight surcharge.
+## 1. Merchant Profiles & Operating Constraints
 
-- **FastTrack Logistics & Goods (SKU011 - SKU020)**
-  - Standard Lead Time: 1 week
-  - Minimum Order Quantity (MOQ): 50 units
-  - Payment Terms: Net 15
-  - Contact: fulfillment@fasttrackgoods.example.com
-  - Standard ground delivery only.
+### A. Apex Electronics & Hardware (Consumer Electronics)
+- **Currency**: USD ($)
+- **Store Manager**: Marcus Vance
+- **Primary Supplier**: Pacific Semiconductor & Components Ltd (`orders@pacific-semi.example.com`)
+- **SKU Coverage**: SKU001 through SKU010
+- **Standard Lead Time**: 3 weeks (Expedited available: 1 week with 10% freight surcharge)
+- **Minimum Order Quantity (MOQ)**: 100 units | Payment Terms: Net 30
+- **Margin Protection**: Minimum gross margin 18.0% | Max promotional markdown 25.0%
 
-- **Prime Merchant Wholesale (SKU021 - SKU030)**
-  - Standard Lead Time: 2 weeks
-  - Minimum Order Quantity (MOQ): 150 units
-  - Payment Terms: 2/10 Net 60
-  - Contact: wholesale@primemerchant.example.com
-  - Expedited delivery available: 1 week lead time with +15% surcharge.
+### B. Lumina Apparel & Lifestyle (Fashion & Apparel)
+- **Currency**: EUR (€)
+- **Store Manager**: Elena Rostova
+- **Primary Supplier**: Nordic Textiles & Apparel Co (`wholesale@nordic-textiles.example.com`)
+- **SKU Coverage**: SKU011 through SKU020
+- **Standard Lead Time**: 2 weeks (Standard Ground Freight)
+- **Minimum Order Quantity (MOQ)**: 50 units | Payment Terms: Net 15
+- **Margin Protection**: Minimum gross margin 25.0% | Max clearance discount 35.0%
 
-## 2. Inventory Health & Promotion Constraints
-- **Overstock Threshold**: Any SKU with stock cover exceeding 12 weeks of forecasted demand is flagged as overstock.
-- **Discount Tiers**:
-  - Weeks of cover between 12 and 20 weeks: recommend a 15% promotional discount.
-  - Weeks of cover exceeding 20 weeks: recommend a 25% clearance discount.
-- **Margin Protection Rule**: No promotion may reduce price below an 18% gross margin over unit cost. Maximum allowable discount across all categories is capped at 30%.
-- **Human-in-the-Loop Governance**: Any purchase order with total order value > $500 or marked with "high" urgency requires explicit store manager authorization before execution into the ERP/WMS.
+### C. FreshHarvest Specialty Foods (Gourmet Pantry)
+- **Currency**: GBP (£)
+- **Store Manager**: David Sterling
+- **Primary Supplier**: Verdant Organic Farms Wholesale (`supply@verdant-organics.example.com`)
+- **SKU Coverage**: SKU021 through SKU030
+- **Standard Lead Time**: 1 week
+- **Minimum Order Quantity (MOQ)**: 75 units | Payment Terms: 2/10 Net 30
+- **Margin Protection**: Minimum gross margin 20.0% | Max markdown discount 20.0%
+
+---
+
+## 2. Global Human-in-the-Loop Governance
+- Any Purchase Order with total value exceeding $500 or marked with "HIGH" urgency requires explicit store manager sign-off.
+- Any promotional markdown deeper than 15% requires manager authorization prior to POS price catalog update.

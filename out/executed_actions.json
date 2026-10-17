@@ -1,5 +1,38 @@
 [
   {
+    "merchant": {
+      "id": "apex_electronics",
+      "name": "Apex Electronics & Hardware",
+      "category": "Consumer Electronics & Components",
+      "currency": "USD ($)",
+      "manager_name": "Marcus Vance",
+      "min_gross_margin_pct": 18.0,
+      "max_discount_pct": 25.0,
+      "suppliers": [
+        {
+          "id": "SUP-SEMI-01",
+          "name": "Pacific Semiconductor & Components Ltd",
+          "skus": [
+            "SKU001",
+            "SKU002",
+            "SKU003",
+            "SKU004",
+            "SKU005",
+            "SKU006",
+            "SKU007",
+            "SKU008",
+            "SKU009",
+            "SKU010"
+          ],
+          "lead_time_weeks": 3,
+          "moq_units": 100,
+          "payment_terms": "Net 30",
+          "contact_email": "orders@pacific-semi.example.com",
+          "expedited_available": true,
+          "expedited_lead_weeks": 1
+        }
+      ]
+    },
     "action": {
       "sku": "SKU001",
       "stock_on_hand": 65,
@@ -13,7 +46,7 @@
       "order_value": 7703.19,
       "needs_approval": true
     },
-    "knowledge_context": "Furnizuesi: Global Retail Supplies Ltd (orders@globalsupplies.example.com). Koha e d\u00ebrges\u00ebs (lead time): 3 jav\u00eb. Sasia minimale e porosis\u00eb (MOQ): 100 nj\u00ebsi. Kushtet e pages\u00ebs: Net 30.",
+    "knowledge_context": "Merchant: Apex Electronics & Hardware (Currency: USD ($)). Supplier: Pacific Semiconductor & Components Ltd (orders@pacific-semi.example.com). Lead Time: 3 weeks. Minimum Order Quantity (MOQ): 100 units. Payment Terms: Net 30.",
     "workflow_result": {
       "source": "Evolus Agent Simulator (Awaiting {applicationId}:{agentId})",
       "status": "workflow_executed",
@@ -31,28 +64,30 @@
         "order_value": 7703.19,
         "needs_approval": true
       },
-      "retrieved_context": "Furnizuesi: Global Retail Supplies Ltd (orders@globalsupplies.example.com). Koha e d\u00ebrges\u00ebs (lead time): 3 jav\u00eb. Sasia minimale e porosis\u00eb (MOQ): 100 nj\u00ebsi. Kushtet e pages\u00ebs: Net 30.",
-      "agent_explanation": "*   Role: Inventory Manager Assistant.\n*   Input: A JSON object representing a proposed action (reorder) and supplier/policy rules.\n*   Constraints:\n    1.  Explanation: 2-3 sentences, use *only* provided numbers, explain *why* the action is proposed.\n    2.  Draft: Email to supplier (if reorder) or promotional message (if discount).\n    3.  Error Handling: If info is insufficient, say \"nuk kam informacion t\u00eb mjaftuesh\u00ebm\".\n    4.  Language: Albanian.\n\n    *   `sku`: SKU001\n    *   `stock_on_hand`: 65\n    *   `lead_time_weeks`: 3\n    *   `forecast_next_4w`: 578\n    *   `weeks_of_cover`: 0.4\n    *   `reorder_point`: 455\n    *   `type`: \"reorder\"\n    *   `quantity`: 1023\n    *   `urgency`: \"high\"\n    *   `order_value`: 7703.19\n    *   `needs_approval`: true\n\n    *   Supplier: Global Retail Supplies Ltd (orders@globalsupplies.example.com)\n    *   Lead time: 3 weeks\n    *   MOQ: 100 units\n    *   Payment terms: Net 30\n\n    *   *Type:* \"reorder\" -> Need to write an email to the supplier.\n    *   *Why?* Stock on hand (65) is much lower than the reorder point (455). The weeks of cover (0.4) is very low compared to the lead time (3 weeks). Forecast for next 4 weeks is 578.\n    *   *Explanation Draft (Albanian):* Stokun aktual \u00ebsht\u00eb 65 nj\u00ebsi, q\u00eb \u00ebsht\u00eb shum\u00eb n\u00ebn pik\u00ebn e riporosis\u00eb prej 455 nj\u00ebsh. Me vet\u00ebm 0.4 jav\u00eb mbulim dhe nj\u00eb parashikim prej 578 nj\u00ebsh p\u00ebr 4 jav\u00ebt e ardhshme, \u00ebsht\u00eb e nevojshme nj\u00eb porosi urgjente prej 1023 nj\u00ebsh.\n\n    *   *Email Draft (Albanian):*\n        *   To: orders@globalsupplies.example.com\n        *   Subject: Porosi e re - SKU001\n        *   Body:\n            P\u00ebrsh\u00ebndetje Global Retail Supplies Ltd,\n            D\u00ebshirojm\u00eb t\u00eb b\u00ebjm\u00eb nj\u00eb porosi p\u00ebr produktin SKU001.\n            Sasia: 1023 nj\u00ebsi.\n            Ju lutemi konfirmoni marrjen e k\u00ebsaj porosie.\n            Faleminderit.\n\n    *   *Explanation:*\n        \"Stoku aktual \u00ebsht\u00eb 65 nj\u00ebsi, gj\u00eb q\u00eb \u00ebsht\u00eb n\u00ebn pik\u00ebn e riporosis\u00eb prej 455 nj\u00ebsh. Me nj\u00eb mbulim prej vet\u00ebm 0.4 jav\u00eb dhe nj\u00eb parashikim prej 578 nj\u00ebsh p\u00ebr 4 jav\u00ebt e ardhshme, propozohet nj\u00eb porosi urgjente prej 1023 nj\u00ebsh.\" (3 sentences, uses only numbers from JSON).\n\n    *   *Email:*\n        Subjekti: Porosi e re p\u00ebr SKU001\n        Email:\n        Drejtuar: orders@globalsupplies.example.com\n        Subjekti: Porosi e re - SKU001\n\n        I nderuar ekip i Global Retail Supplies Ltd,\n\n        P\u00ebrmes k\u00ebtij emaili, d\u00ebshirojm\u00eb t\u00eb vendosim nj\u00eb porosi p\u00ebr produktin me kod SKU001.\n\n        Detajet e porosis\u00eb:\n        - Sasia: 1023 nj\u00ebsi\n        - Kushtet e pages\u00ebs: Net 30\n\n        Ju lutemi na konfirmoni pranimin e k\u00ebsaj porosie dhe dat\u00ebn e parashikuar t\u00eb d\u00ebrges\u00ebs.\n\n        Faleminderit,\n        Menaxheri i Inventarit\n\n    *   2-3 sentences? Yes.\n    *   Only provided numbers? Yes (65, 455, 0.4, 578, 1023).\n    *   Email for reorder? Yes.\n    *   Supplier info included? Yes.\n    *   Language correct? Yes.",
+      "retrieved_context": "Merchant: Apex Electronics & Hardware (Currency: USD ($)). Supplier: Pacific Semiconductor & Components Ltd (orders@pacific-semi.example.com). Lead Time: 3 weeks. Minimum Order Quantity (MOQ): 100 units. Payment Terms: Net 30.",
+      "agent_explanation": "*   Role: Expert AI inventory & promotion assistant.\n*   Input: A JSON object containing inventory data (SKU, stock, forecast, etc.) and Merchant/Supplier context.\n*   Constraint 1: Never modify or hallucinate numbers. Use ONLY provided figures.\n*   Constraint 2: If insufficient info, state \"insufficient information\".\n*   Task 1 (Explanation): 2-3 sentence executive explanation of the recommendation.\n*   Task 2 (Draft):\n    *   If `type` is \"reorder\": Formal Purchase Order email to supplier (include SKU, quantity, lead time, payment terms).\n    *   If `type` is \"markdown\": Engaging promotional marketing copy.\n\n    *   `sku`: \"SKU001\"\n    *   `stock_on_hand`: 65\n    *   `lead_time_weeks`: 3\n    *   `forecast_next_4w`: 578\n    *   `weeks_of_cover`: 0.4\n    *   `reorder_point`: 455\n    *   `type`: \"reorder\"\n    *   `quantity`: 1023\n    *   `urgency`: \"high\"\n    *   `order_value`: 7703.19\n    *   `needs_approval`: true\n\n    *   Merchant: Apex Electronics & Hardware (USD)\n    *   Supplier: Pacific Semiconductor & Components Ltd (orders@pacific-semi.example.com)\n    *   Lead Time: 3 weeks\n    *   MOQ: 100 units\n    *   Payment Terms: Net 30\n\n    *   *Why reorder?* Current stock (65) is significantly below the reorder point (455). The weeks of cover (0.4) is very low compared to the lead time (3 weeks), indicating a high risk of stockout.\n    *   *Drafting Explanation:* A reorder for SKU001 is recommended due to high urgency, as current stock levels (65) are well below the reorder point of 455. With only 0.4 weeks of cover remaining against a 3-week lead time, this action is necessary to prevent a stockout.\n\n    *   *Type:* reorder.\n    *   *Recipient:* orders@pacific-semi.example.com\n    *   *Subject:* Purchase Order - Apex Electronics & Hardware - SKU001\n    *   *Content:*\n        *   Formal greeting.\n        *   Order details: SKU001, Quantity: 1023.\n        *   Lead time: 3 weeks.\n        *   Payment terms: Net 30.\n        *   Total value (optional but good): $7,703.19.\n\n    *   *Explanation:* \"A reorder for SKU001 is recommended because current stock on hand (65) has fallen significantly below the reorder point of 455. With only 0.4 weeks of cover available and a 3-week lead time, immediate action is required to mitigate a high-urgency stockout risk.\" (3 sentences).\n    *   *Email:*\n        Subject: Purchase Order: SKU001 - Apex Electronics & Hardware\n        To: orders@pacific-semi.example.com\n        Dear Pacific Semiconductor & Components Ltd Team,\n        Please find our formal purchase order for the following item:\n        SKU: SKU001\n        Quantity: 1023\n        Lead Time: 3 weeks\n        Payment Terms: Net 30\n        The total order value is $7,703.19. Please confirm receipt of this order and provide an estimated delivery date.\n        Best regards,\n        [Your Name/Title]\n        Apex Electronics & Hardware\n\n    *   Did I use only provided numbers? Yes (65, 455, 0.4, 3, 1023, 7703.19).\n    *   Is the explanation 2-3 sentences? Yes.\n    *   Is the email formal? Yes.\n    *   Does the email include SKU, quantity, lead time, and payment terms? Yes.\n    *   Is the urgency addressed? Yes.",
       "model_used": "Google Gemma 4 (gemma-4-26b-a4b-it)",
       "needs_approval": true
     },
     "manager_decision": "APPROVED",
-    "manager_name": "Store Manager",
+    "manager_name": "Marcus Vance",
     "mcp_execution": {
       "success": true,
-      "po_number": "PO-20261017-0367DC",
-      "message": "Successfully created Purchase Order PO-20261017-0367DC for 1023 units of SKU001.",
+      "po_number": "PO-20261017-110A63",
+      "message": "Successfully created Purchase Order PO-20261017-110A63 for 1023 units of SKU001 [Apex Electronics & Hardware].",
       "transaction": {
-        "transaction_id": "PO-20261017-0367DC",
+        "transaction_id": "PO-20261017-110A63",
         "type": "PURCHASE_ORDER",
+        "merchant_id": "apex_electronics",
+        "merchant_name": "Apex Electronics & Hardware",
         "sku": "SKU001",
         "quantity": 1023,
-        "supplier": "Global Retail Supplies Ltd",
+        "supplier": "Pacific Semiconductor & Components Ltd",
         "urgency": "high",
         "order_value": 7703.19,
         "approval_status": "APPROVED",
-        "approved_by": "Store Manager",
-        "timestamp": "2026-10-17T09:46:11.921060+00:00",
+        "approved_by": "Marcus Vance",
+        "timestamp": "2026-10-17T09:57:59.188224+00:00",
         "status": "EXECUTED_IN_ERP"
       }
     }

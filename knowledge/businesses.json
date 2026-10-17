@@ -1,0 +1,70 @@
+{
+  "businesses": {
+    "apex_electronics": {
+      "id": "apex_electronics",
+      "name": "Apex Electronics & Hardware",
+      "category": "Consumer Electronics & Components",
+      "currency": "USD ($)",
+      "manager_name": "Marcus Vance",
+      "min_gross_margin_pct": 18.0,
+      "max_discount_pct": 25.0,
+      "suppliers": [
+        {
+          "id": "SUP-SEMI-01",
+          "name": "Pacific Semiconductor & Components Ltd",
+          "skus": ["SKU001", "SKU002", "SKU003", "SKU004", "SKU005", "SKU006", "SKU007", "SKU008", "SKU009", "SKU010"],
+          "lead_time_weeks": 3,
+          "moq_units": 100,
+          "payment_terms": "Net 30",
+          "contact_email": "orders@pacific-semi.example.com",
+          "expedited_available": true,
+          "expedited_lead_weeks": 1
+        }
+      ]
+    },
+    "lumina_fashion": {
+      "id": "lumina_fashion",
+      "name": "Lumina Apparel & Lifestyle",
+      "category": "Apparel & Seasonal Retail",
+      "currency": "EUR (€)",
+      "manager_name": "Elena Rostova",
+      "min_gross_margin_pct": 25.0,
+      "max_discount_pct": 35.0,
+      "suppliers": [
+        {
+          "id": "SUP-TEX-02",
+          "name": "Nordic Textiles & Apparel Co",
+          "skus": ["SKU011", "SKU012", "SKU013", "SKU014", "SKU015", "SKU016", "SKU017", "SKU018", "SKU019", "SKU020"],
+          "lead_time_weeks": 2,
+          "moq_units": 50,
+          "payment_terms": "Net 15",
+          "contact_email": "wholesale@nordic-textiles.example.com",
+          "expedited_available": false,
+          "expedited_lead_weeks": 2
+        }
+      ]
+    },
+    "freshharvest_pantry": {
+      "id": "freshharvest_pantry",
+      "name": "FreshHarvest Specialty Foods",
+      "category": "Organic Pantry & Perishables",
+      "currency": "GBP (£)",
+      "manager_name": "David Sterling",
+      "min_gross_margin_pct": 20.0,
+      "max_discount_pct": 20.0,
+      "suppliers": [
+        {
+          "id": "SUP-ORG-03",
+          "name": "Verdant Organic Farms Wholesale",
+          "skus": ["SKU021", "SKU022", "SKU023", "SKU024", "SKU025", "SKU026", "SKU027", "SKU028", "SKU029", "SKU030"],
+          "lead_time_weeks": 1,
+          "moq_units": 75,
+          "payment_terms": "2/10 Net 30",
+          "contact_email": "supply@verdant-organics.example.com",
+          "expedited_available": true,
+          "expedited_lead_weeks": 1
+        }
+      ]
+    }
+  }
+}

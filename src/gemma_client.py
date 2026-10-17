@@ -1,8 +1,9 @@
 """Client for Google Gemma 4 and AMD vLLM Inference.
+Multi-Merchant Retail AI Assistant (100% English).
 Strictly adheres to hackathon guidelines:
 - LLM is used ONLY for explanation and drafting, never for demand forecasting.
 - Respects deterministic numbers calculated by gradient boosting and inventory rules.
-- Supports both AMD vLLM / Radeon Cloud (rc-...) and Google AI Studio (GEMMA_API_KEY).
+- Supports Google Gemma 4 (gemma-4-26b-a4b-it / gemma-4-31b-it) and AMD vLLM / Radeon Cloud.
 """
 import os
 import json
@@ -19,21 +20,25 @@ LLM_MODEL = os.environ.get("LLM_MODEL", "google/gemma-4-31B-it")
 # Google Gemma / Studio Configuration
 GEMMA_API_KEY = os.environ.get("GEMMA_API_KEY", "")
 
-SYSTEM_PROMPT = """Ti je asistent për një menaxher inventari. Të jepet një veprim i propozuar me numra të llogaritur nga një model parashikimi. Mos ndrysho numrat.
+SYSTEM_PROMPT = """You are an expert AI inventory & promotion assistant for a retail store manager.
+You are provided with a proposed inventory action with numbers calculated by a machine learning forecasting model and safety stock policy.
+Never modify or hallucinate numbers. Use ONLY the provided figures.
 
-Rregullat:
-1. Shkruaj një shpjegim me 2-3 fjali pse propozohet ky veprim, duke përdorur vetëm numrat e dhënë.
-2. Draftin e email-it te furnitori (nëse veprimi është porosi) ose mesazhin e promocionit (nëse është zbritje).
-3. Nëse nuk ke informacion të mjaftueshëm, thuaj "nuk kam informacion të mjaftueshëm" dhe mos hamendëso."""
+Instructions:
+1. Explanation: Provide a 2-3 sentence executive explanation of why this action is recommended.
+2. Draft:
+   - If reorder: Write a formal Purchase Order email to the supplier including SKU, quantity, lead time, and payment terms.
+   - If markdown: Write an engaging promotional marketing campaign copy highlighting the discount to clear excess stock.
+3. If insufficient information is provided, state "insufficient information" and do not guess."""
 
 def format_user_prompt(action, retrieved_rules=""):
-    return f"""Veprimi:
+    return f"""Proposed Action:
 {json.dumps(action, indent=2)}
 
-Rregullat e furnitorit dhe politikës:
+Merchant & Supplier Context:
 {retrieved_rules}
 
-Ju lutem gjeneroni shpjegimin dhe draftin përkatës."""
+Please generate the explanation and communication draft in English."""
 
 def generate_with_google(action, retrieved_rules=""):
     """Inference via Google API (Gemma 4 with automatic fallback)."""
@@ -43,21 +48,19 @@ def generate_with_google(action, retrieved_rules=""):
     user_prompt = format_user_prompt(action, retrieved_rules)
     full_prompt = f"{SYSTEM_PROMPT}\n\n{user_prompt}"
     
-    # Try Gemma 4 models first, then ultra-fast fallback if preview has high latency
-    models_to_try = ["gemma-4-31b-it", "gemma-4-26b-a4b-it", "gemini-3.8-flash"]
+    models_to_try = ["gemma-4-26b-a4b-it", "gemma-4-31b-it", "gemini-3.8-flash"]
     
     for model_name in models_to_try:
         url = f"https://generativelanguage.googleapis.com/v1beta/models/{model_name}:generateContent?key={GEMMA_API_KEY}"
         payload = {
             "contents": [{"parts": [{"text": full_prompt}]}],
-            "generationConfig": {"temperature": 0.2, "maxOutputTokens": 1200}
+            "generationConfig": {"temperature": 0.2, "maxOutputTokens": 1000}
         }
         try:
-            resp = requests.post(url, json=payload, headers={"Content-Type": "application/json"}, timeout=30)
+            resp = requests.post(url, json=payload, headers={"Content-Type": "application/json"}, timeout=25)
             if resp.status_code == 200:
                 data = resp.json()
                 text = data["candidates"][0]["content"]["parts"][0]["text"].strip()
-                # If thinking tags are present, extract the final response
                 if "</thought>" in text:
                     text = text.split("</thought>")[-1].strip()
                 label = f"Google Gemma 4 ({model_name})" if "gemma" in model_name else "Google Gemma 4 Engine (Live via Google AI)"
@@ -121,7 +124,7 @@ def generate_explanation(action, retrieved_rules=""):
     return mock_gemma_explanation(action, retrieved_rules)
 
 def mock_gemma_explanation(action, retrieved_rules=""):
-    """Deterministic fallback matching Gemma 4's expected output format."""
+    """Deterministic fallback matching Gemma 4's expected output format in English."""
     sku = action.get("sku", "SKU")
     act_type = action.get("type", "unknown")
     stock = action.get("stock_on_hand", 0)
@@ -136,22 +139,23 @@ def mock_gemma_explanation(action, retrieved_rules=""):
         lead = action.get("lead_time_weeks", 2)
         
         explanation = (
-            f"Për artikullin {sku}, stoku aktual ({stock} njësi) ka rënë nën pikën e riporositjes ({rop} njësi), "
-            f"me një mbulesë kritike prej vetëm {cover} javësh kundrejt kërkesës së parashikuar 4-javore ({fc4} njësi). "
-            f"Duke marrë parasysh kohën e dërgesës prej {lead} javësh, propozohet porositja e menjëhershme e {qty} njësive "
-            f"(vlera totale: €{val}) me urgjencë '{urgency}' për të parandaluar mungesën e stokut."
+            f"For {sku}, current inventory ({stock} units) has breached the reorder threshold of {rop} units, "
+            f"providing a critical stock cover of only {cover} weeks against a 4-week forecasted demand of {fc4} units. "
+            f"Factoring in a supplier lead time of {lead} weeks, an immediate replenishment of {qty} units "
+            f"(order valuation: ${val}) is recommended with '{urgency.upper()}' urgency to avert impending stockouts."
         )
         
         draft = (
-            f"Lënda: Porosi e re për furnizim - {sku} (Urgjenca: {urgency.upper()})\n\n"
-            f"Të nderuar,\n\n"
-            f"Ju lutemi pranoni këtë porosi zyrtare për artikullin {sku}:\n"
-            f"- Sasia: {qty} njësi\n"
-            f"- Afati i kërkuar i dorëzimit: {lead} javë\n"
-            f"- Vlera e përllogaritur e porosisë: €{val}\n\n"
-            f"Ju lutemi na konfirmoni marrjen e porosisë dhe datën e nisjes së dërgesës.\n\n"
-            f"Me respekt,\n"
-            f"Departamenti i Menaxhimit të Inventarit"
+            f"Subject: Formal Purchase Order - Urgent Stock Replenishment ({sku})\n\n"
+            f"Dear Vendor Procurement Team,\n\n"
+            f"Please accept this formal purchase order for inventory replenishment:\n"
+            f"- SKU Item: {sku}\n"
+            f"- Requested Order Quantity: {qty} units\n"
+            f"- Required Lead Time: {lead} weeks\n"
+            f"- Total Estimated Order Value: ${val}\n\n"
+            f"Kindly confirm receipt of this order and provide the confirmed dispatch schedule.\n\n"
+            f"Best regards,\n"
+            f"Inventory Management & Operations"
         )
     elif act_type == "markdown":
         disc = action.get("suggested_discount_pct", 15)
@@ -159,22 +163,22 @@ def mock_gemma_explanation(action, retrieved_rules=""):
         tied_cap = action.get("tied_up_capital", 0.0)
         
         explanation = (
-            f"Artikulli {sku} paraqet mbi-stok me {stock} njësi në magazinë dhe një mbulesë prej {cover} javësh, "
-            f"dukshëm mbi pragun optimal prej 12 javësh. Propozohet zbritje çmimi prej {disc}% për të liruar "
-            f"{excess} njësi tepricë dhe një kapital të bllokuar prej €{tied_cap}."
+            f"Item {sku} is experiencing severe overstock with {stock} units on hand, translating to {cover} weeks of cover "
+            f"— significantly surpassing our maximum policy threshold of 12 weeks. An immediate {disc}% markdown is "
+            f"recommended to liquidate {excess} excess units and release ${tied_cap} in trapped working capital."
         )
         
         draft = (
-            f"Fushata Promovuese: Super Ofertë për {sku}!\n\n"
-            f"Përfitoni {disc}% zbritje për një kohë të kufizuar për artikullin {sku}! "
-            f"Lironi hapësirën tuaj dhe kurseni sot para se stoku të përfundojë. "
-            f"Ofertë e vlefshme deri në shitjen e {excess} njësive të para promocionale."
+            f"Promotional Campaign Copy: Limited Time Clearance on {sku}!\n\n"
+            f"Upgrade your setup today with an exclusive {disc}% discount on {sku}! "
+            f"Premium quality at unmatched value — limited stock available during this seasonal liquidation. "
+            f"Special pricing applies to the first {excess} promotional units while supplies last."
         )
     else:
-        explanation = "Nuk kërkohet veprim i menjëhershëm pasi nivelet e stokut janë brenda kufijve optimalë."
-        draft = "Nuk kërkohet draft."
+        explanation = "Current inventory and forecast levels remain balanced within healthy operational boundaries."
+        draft = "No immediate vendor draft required."
 
-    content = f"1. Shpjegimi:\n{explanation}\n\n2. Drafti:\n{draft}"
+    content = f"1. Executive Explanation:\n{explanation}\n\n2. Communication Draft:\n{draft}"
     return {
         "source": "Google Gemma 4 (Deterministic Baseline)",
         "text": content,
@@ -195,7 +199,7 @@ if __name__ == "__main__":
         "order_value": 7703.19,
         "needs_approval": True
     }
-    rules = "Furnizuesi: Global Retail Supplies Ltd. Lead time: 3 javë. MOQ: 100 njësi."
+    rules = "Merchant: Apex Electronics & Hardware. Supplier: Pacific Semiconductor Ltd. Lead time: 3 weeks. MOQ: 100 units."
     res = generate_explanation(sample, rules)
-    print(f"Generated by: {res['source']}")
+    print(f"Generated by: {res['source']}\n")
     print(res["text"])

@@ -63,5 +63,46 @@
     "approved_by": "Store Manager",
     "timestamp": "2026-10-17T09:46:11.921060+00:00",
     "status": "EXECUTED_IN_ERP"
+  },
+  {
+    "transaction_id": "PO-20261017-DB487E",
+    "type": "PURCHASE_ORDER",
+    "sku": "SKU001",
+    "quantity": 1023,
+    "supplier": "Global Retail Supplies Ltd",
+    "urgency": "high",
+    "order_value": 7703.19,
+    "approval_status": "APPROVED",
+    "approved_by": "Store Manager",
+    "timestamp": "2026-10-17T09:50:13.126003+00:00",
+    "status": "EXECUTED_IN_ERP"
+  },
+  {
+    "transaction_id": "PO-20261017-B25B4A",
+    "type": "PURCHASE_ORDER",
+    "sku": "SKU002",
+    "quantity": 660,
+    "supplier": "Global Retail Supplies Ltd",
+    "urgency": "high",
+    "order_value": 2329.8,
+    "approval_status": "APPROVED",
+    "approved_by": "Store Manager",
+    "timestamp": "2026-10-17T09:51:04.841811+00:00",
+    "status": "EXECUTED_IN_ERP"
+  },
+  {
+    "transaction_id": "PO-20261017-110A63",
+    "type": "PURCHASE_ORDER",
+    "merchant_id": "apex_electronics",
+    "merchant_name": "Apex Electronics & Hardware",
+    "sku": "SKU001",
+    "quantity": 1023,
+    "supplier": "Pacific Semiconductor & Components Ltd",
+    "urgency": "high",
+    "order_value": 7703.19,
+    "approval_status": "APPROVED",
+    "approved_by": "Marcus Vance",
+    "timestamp": "2026-10-17T09:57:59.188224+00:00",
+    "status": "EXECUTED_IN_ERP"
   }
 ]
