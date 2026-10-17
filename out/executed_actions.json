@@ -1,0 +1,60 @@
+[
+  {
+    "action": {
+      "sku": "SKU001",
+      "stock_on_hand": 65,
+      "lead_time_weeks": 3,
+      "forecast_next_4w": 578,
+      "weeks_of_cover": 0.4,
+      "reorder_point": 455,
+      "type": "reorder",
+      "quantity": 1023,
+      "urgency": "high",
+      "order_value": 7703.19,
+      "needs_approval": true
+    },
+    "knowledge_context": "Furnizuesi: Global Retail Supplies Ltd (orders@globalsupplies.example.com). Koha e d\u00ebrges\u00ebs (lead time): 3 jav\u00eb. Sasia minimale e porosis\u00eb (MOQ): 100 nj\u00ebsi. Kushtet e pages\u00ebs: Net 30.",
+    "workflow_result": {
+      "source": "Evolus Agent Simulator (Awaiting {applicationId}:{agentId})",
+      "status": "workflow_executed",
+      "workflow_id": "wf_inventory_promotion_agent",
+      "input_action": {
+        "sku": "SKU001",
+        "stock_on_hand": 65,
+        "lead_time_weeks": 3,
+        "forecast_next_4w": 578,
+        "weeks_of_cover": 0.4,
+        "reorder_point": 455,
+        "type": "reorder",
+        "quantity": 1023,
+        "urgency": "high",
+        "order_value": 7703.19,
+        "needs_approval": true
+      },
+      "retrieved_context": "Furnizuesi: Global Retail Supplies Ltd (orders@globalsupplies.example.com). Koha e d\u00ebrges\u00ebs (lead time): 3 jav\u00eb. Sasia minimale e porosis\u00eb (MOQ): 100 nj\u00ebsi. Kushtet e pages\u00ebs: Net 30.",
+      "agent_explanation": "*   Role: Inventory Manager Assistant.\n*   Input: A JSON object representing a proposed action (reorder) and supplier/policy rules.\n*   Constraints:\n    1.  Explanation: 2-3 sentences, use *only* provided numbers, explain *why* the action is proposed.\n    2.  Draft: Email to supplier (if reorder) or promotional message (if discount).\n    3.  Error Handling: If info is insufficient, say \"nuk kam informacion t\u00eb mjaftuesh\u00ebm\".\n    4.  Language: Albanian.\n\n    *   `sku`: SKU001\n    *   `stock_on_hand`: 65\n    *   `lead_time_weeks`: 3\n    *   `forecast_next_4w`: 578\n    *   `weeks_of_cover`: 0.4\n    *   `reorder_point`: 455\n    *   `type`: \"reorder\"\n    *   `quantity`: 1023\n    *   `urgency`: \"high\"\n    *   `order_value`: 7703.19\n    *   `needs_approval`: true\n\n    *   Supplier: Global Retail Supplies Ltd (orders@globalsupplies.example.com)\n    *   Lead time: 3 weeks\n    *   MOQ: 100 units\n    *   Payment terms: Net 30\n\n    *   *Type:* \"reorder\" -> Need to write an email to the supplier.\n    *   *Why?* Stock on hand (65) is much lower than the reorder point (455). The weeks of cover (0.4) is very low compared to the lead time (3 weeks). Forecast for next 4 weeks is 578.\n    *   *Explanation Draft (Albanian):* Stokun aktual \u00ebsht\u00eb 65 nj\u00ebsi, q\u00eb \u00ebsht\u00eb shum\u00eb n\u00ebn pik\u00ebn e riporosis\u00eb prej 455 nj\u00ebsh. Me vet\u00ebm 0.4 jav\u00eb mbulim dhe nj\u00eb parashikim prej 578 nj\u00ebsh p\u00ebr 4 jav\u00ebt e ardhshme, \u00ebsht\u00eb e nevojshme nj\u00eb porosi urgjente prej 1023 nj\u00ebsh.\n\n    *   *Email Draft (Albanian):*\n        *   To: orders@globalsupplies.example.com\n        *   Subject: Porosi e re - SKU001\n        *   Body:\n            P\u00ebrsh\u00ebndetje Global Retail Supplies Ltd,\n            D\u00ebshirojm\u00eb t\u00eb b\u00ebjm\u00eb nj\u00eb porosi p\u00ebr produktin SKU001.\n            Sasia: 1023 nj\u00ebsi.\n            Ju lutemi konfirmoni marrjen e k\u00ebsaj porosie.\n            Faleminderit.\n\n    *   *Explanation:*\n        \"Stoku aktual \u00ebsht\u00eb 65 nj\u00ebsi, gj\u00eb q\u00eb \u00ebsht\u00eb n\u00ebn pik\u00ebn e riporosis\u00eb prej 455 nj\u00ebsh. Me nj\u00eb mbulim prej vet\u00ebm 0.4 jav\u00eb dhe nj\u00eb parashikim prej 578 nj\u00ebsh p\u00ebr 4 jav\u00ebt e ardhshme, propozohet nj\u00eb porosi urgjente prej 1023 nj\u00ebsh.\" (3 sentences, uses only numbers from JSON).\n\n    *   *Email:*\n        Subjekti: Porosi e re p\u00ebr SKU001\n        Email:\n        Drejtuar: orders@globalsupplies.example.com\n        Subjekti: Porosi e re - SKU001\n\n        I nderuar ekip i Global Retail Supplies Ltd,\n\n        P\u00ebrmes k\u00ebtij emaili, d\u00ebshirojm\u00eb t\u00eb vendosim nj\u00eb porosi p\u00ebr produktin me kod SKU001.\n\n        Detajet e porosis\u00eb:\n        - Sasia: 1023 nj\u00ebsi\n        - Kushtet e pages\u00ebs: Net 30\n\n        Ju lutemi na konfirmoni pranimin e k\u00ebsaj porosie dhe dat\u00ebn e parashikuar t\u00eb d\u00ebrges\u00ebs.\n\n        Faleminderit,\n        Menaxheri i Inventarit\n\n    *   2-3 sentences? Yes.\n    *   Only provided numbers? Yes (65, 455, 0.4, 578, 1023).\n    *   Email for reorder? Yes.\n    *   Supplier info included? Yes.\n    *   Language correct? Yes.",
+      "model_used": "Google Gemma 4 (gemma-4-26b-a4b-it)",
+      "needs_approval": true
+    },
+    "manager_decision": "APPROVED",
+    "manager_name": "Store Manager",
+    "mcp_execution": {
+      "success": true,
+      "po_number": "PO-20261017-0367DC",
+      "message": "Successfully created Purchase Order PO-20261017-0367DC for 1023 units of SKU001.",
+      "transaction": {
+        "transaction_id": "PO-20261017-0367DC",
+        "type": "PURCHASE_ORDER",
+        "sku": "SKU001",
+        "quantity": 1023,
+        "supplier": "Global Retail Supplies Ltd",
+        "urgency": "high",
+        "order_value": 7703.19,
+        "approval_status": "APPROVED",
+        "approved_by": "Store Manager",
+        "timestamp": "2026-10-17T09:46:11.921060+00:00",
+        "status": "EXECUTED_IN_ERP"
+      }
+    }
+  }
+]

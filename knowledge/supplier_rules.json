@@ -1,0 +1,52 @@
+{
+  "suppliers": {
+    "SUP-GLOBAL-01": {
+      "name": "Global Retail Supplies Ltd",
+      "skus_covered": ["SKU001", "SKU002", "SKU003", "SKU004", "SKU005", "SKU006", "SKU007", "SKU008", "SKU009", "SKU010"],
+      "lead_time_weeks": 3,
+      "moq_units": 100,
+      "payment_terms": "Net 30",
+      "contact_email": "orders@globalsupplies.example.com",
+      "expedited_shipping_available": true,
+      "expedited_lead_time_weeks": 1,
+      "expedited_surcharge_pct": 10
+    },
+    "SUP-FAST-02": {
+      "name": "FastTrack Logistics & Goods",
+      "skus_covered": ["SKU011", "SKU012", "SKU013", "SKU014", "SKU015", "SKU016", "SKU017", "SKU018", "SKU019", "SKU020"],
+      "lead_time_weeks": 1,
+      "moq_units": 50,
+      "payment_terms": "Net 15",
+      "contact_email": "fulfillment@fasttrackgoods.example.com",
+      "expedited_shipping_available": false,
+      "expedited_lead_time_weeks": 1,
+      "expedited_surcharge_pct": 0
+    },
+    "SUP-PRIME-03": {
+      "name": "Prime Merchant Wholesale",
+      "skus_covered": ["SKU021", "SKU022", "SKU023", "SKU024", "SKU025", "SKU026", "SKU027", "SKU028", "SKU029", "SKU030"],
+      "lead_time_weeks": 2,
+      "moq_units": 150,
+      "payment_terms": "2/10 Net 60",
+      "contact_email": "wholesale@primemerchant.example.com",
+      "expedited_shipping_available": true,
+      "expedited_lead_time_weeks": 1,
+      "expedited_surcharge_pct": 15
+    }
+  },
+  "pricing_rules": {
+    "minimum_gross_margin_pct": 18.0,
+    "maximum_discount_pct": 30.0,
+    "markdown_triggers": {
+      "overstock_weeks_threshold": 12,
+      "deep_discount_weeks_threshold": 20,
+      "recommended_discount_light_pct": 15,
+      "recommended_discount_deep_pct": 25
+    },
+    "approval_policy": {
+      "reorder_above_value_needs_approval": 500.0,
+      "markdown_above_discount_pct_needs_approval": 10.0,
+      "urgent_reorder_always_needs_approval": true
+    }
+  }
+}

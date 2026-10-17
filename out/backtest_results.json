@@ -1,0 +1,7 @@
+{
+  "model": 0.1243,
+  "seasonal_naive": 0.1586,
+  "moving_avg_4": 0.1349,
+  "improvement_vs_best_baseline_pct": 7.9,
+  "metric": "WAPE (lower is better), 4-week horizon, 4 rolling origins"
+}

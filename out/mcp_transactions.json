@@ -1,0 +1,67 @@
+[
+  {
+    "transaction_id": "PO-20261017-11BF13",
+    "type": "PURCHASE_ORDER",
+    "sku": "SKU001",
+    "quantity": 1023,
+    "supplier": "Approved Supplier",
+    "urgency": "high",
+    "order_value": 7703.19,
+    "approval_status": "APPROVED",
+    "approved_by": "Store Manager",
+    "timestamp": "2026-10-17T09:12:44.813489+00:00",
+    "status": "EXECUTED_IN_ERP"
+  },
+  {
+    "transaction_id": "PO-20261017-749643",
+    "type": "PURCHASE_ORDER",
+    "sku": "SKU001",
+    "quantity": 1023,
+    "supplier": "Global Retail Supplies Ltd",
+    "urgency": "high",
+    "order_value": 7703.19,
+    "approval_status": "APPROVED",
+    "approved_by": "Store Manager",
+    "timestamp": "2026-10-17T09:13:43.161385+00:00",
+    "status": "EXECUTED_IN_ERP"
+  },
+  {
+    "transaction_id": "PO-20261017-690B3B",
+    "type": "PURCHASE_ORDER",
+    "sku": "SKU002",
+    "quantity": 660,
+    "supplier": "Global Retail Supplies Ltd",
+    "urgency": "high",
+    "order_value": 2329.8,
+    "approval_status": "APPROVED",
+    "approved_by": "Store Manager",
+    "timestamp": "2026-10-17T09:13:43.170929+00:00",
+    "status": "EXECUTED_IN_ERP"
+  },
+  {
+    "transaction_id": "PO-20261017-838CDD",
+    "type": "PURCHASE_ORDER",
+    "sku": "SKU001",
+    "quantity": 1023,
+    "supplier": "Global Retail Supplies Ltd",
+    "urgency": "high",
+    "order_value": 7703.19,
+    "approval_status": "APPROVED",
+    "approved_by": "Store Manager",
+    "timestamp": "2026-10-17T09:44:06.115000+00:00",
+    "status": "EXECUTED_IN_ERP"
+  },
+  {
+    "transaction_id": "PO-20261017-0367DC",
+    "type": "PURCHASE_ORDER",
+    "sku": "SKU001",
+    "quantity": 1023,
+    "supplier": "Global Retail Supplies Ltd",
+    "urgency": "high",
+    "order_value": 7703.19,
+    "approval_status": "APPROVED",
+    "approved_by": "Store Manager",
+    "timestamp": "2026-10-17T09:46:11.921060+00:00",
+    "status": "EXECUTED_IN_ERP"
+  }
+]
