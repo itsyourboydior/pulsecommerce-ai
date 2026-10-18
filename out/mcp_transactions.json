@@ -104,5 +104,20 @@
     "approved_by": "Marcus Vance",
     "timestamp": "2026-10-17T09:57:59.188224+00:00",
     "status": "EXECUTED_IN_ERP"
+  },
+  {
+    "transaction_id": "PO-20261018-DBC2E1",
+    "type": "PURCHASE_ORDER",
+    "merchant_id": "apex_electronics",
+    "merchant_name": "Apex Electronics & Hardware",
+    "sku": "SKU001",
+    "quantity": 1023,
+    "supplier": "Pacific Semiconductor & Components Ltd",
+    "urgency": "high",
+    "order_value": 7703.19,
+    "approval_status": "APPROVED",
+    "approved_by": "Marcus Vance",
+    "timestamp": "2026-10-18T09:39:41.206434+00:00",
+    "status": "EXECUTED_IN_ERP"
   }
 ]
