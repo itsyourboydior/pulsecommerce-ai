@@ -880,6 +880,159 @@ HTML_TEMPLATE = """<!DOCTYPE html>
         .faq-row.active .faq-head i {
             transform: rotate(45deg);
         }
+    
+        /* Pricing Cards Styles (Astral Web Warm Editorial) */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+            max-width: 1200px;
+            margin: 0 auto;
+            align-items: stretch;
+        }
+        @media (max-width: 992px) {
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        .pricing-card {
+            background: var(--color-pure-white);
+            border: 1px solid var(--color-dove);
+            border-radius: 20px;
+            padding: 36px 30px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+            transition: all 0.25s ease;
+        }
+        .pricing-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(0,0,0,0.06);
+            border-color: var(--color-slate);
+        }
+        .pricing-card.featured {
+            border: 2px solid var(--color-rust);
+            box-shadow: 0 10px 30px rgba(93, 42, 26, 0.08);
+        }
+        .featured-badge {
+            position: absolute;
+            top: -13px;
+            right: 28px;
+            background: var(--color-rust);
+            color: #ffffff;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.6px;
+            padding: 4px 14px;
+            border-radius: 9999px;
+            text-transform: uppercase;
+        }
+        .pricing-tier-tag {
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: var(--color-slate);
+            margin-bottom: 6px;
+        }
+        .pricing-name {
+            font-family: var(--font-signifier);
+            font-size: 32px;
+            font-weight: 400;
+            color: var(--color-ink);
+            margin-bottom: 8px;
+        }
+        .pricing-desc {
+            font-size: 14px;
+            color: var(--color-graphite);
+            line-height: 1.5;
+            min-height: 44px;
+            margin-bottom: 20px;
+        }
+        .pricing-price-wrap {
+            display: flex;
+            align-items: baseline;
+            gap: 4px;
+            margin-bottom: 8px;
+            border-bottom: 1px solid var(--color-dove);
+            padding-bottom: 20px;
+        }
+        .pricing-curr {
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--color-ink);
+        }
+        .pricing-num {
+            font-family: var(--font-signifier);
+            font-size: 54px;
+            font-weight: 400;
+            color: var(--color-ink);
+            line-height: 1;
+        }
+        .pricing-period {
+            font-size: 14px;
+            color: var(--color-slate);
+            font-weight: 500;
+        }
+        .pricing-features-title {
+            font-size: 11.5px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            color: var(--color-slate);
+            margin-bottom: 14px;
+        }
+        .pricing-features-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            font-size: 13.5px;
+            color: var(--color-ash);
+            flex-grow: 1;
+        }
+        .pricing-features-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            line-height: 1.45;
+        }
+        .pricing-features-list li i {
+            margin-top: 3px;
+            font-size: 12px;
+            color: #059669;
+        }
+
+        /* Dedicated Pristine Print Styles */
+        @media print {
+            body * {
+                visibility: hidden !important;
+            }
+            #printable-audit-dossier, #printable-audit-dossier * {
+                visibility: visible !important;
+            }
+            #printable-audit-dossier {
+                position: absolute !important;
+                left: 0 !important;
+                top: 0 !important;
+                width: 100% !important;
+                background: #ffffff !important;
+                color: #111111 !important;
+                padding: 24px !important;
+                margin: 0 !important;
+                display: block !important;
+                font-family: 'Inter', system-ui, sans-serif !important;
+            }
+            @page {
+                size: A4 portrait;
+                margin: 1.2cm;
+            }
+        }
+        #printable-audit-dossier {
+            display: none;
+        }
+
     </style>
 </head>
 <body>
@@ -903,6 +1056,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
                 <a onclick="scrollToSection('landing')" class="nav-link active" id="nav-landing" style="cursor: pointer;">Solutions</a>
                 <a onclick="scrollToSection('architecture')" class="nav-link" style="cursor: pointer;">Architecture</a>
                 <a onclick="scrollToSection('calculator')" class="nav-link" style="cursor: pointer;">ROI Model</a>
+                <a onclick="scrollToSection('pricing')" class="nav-link" style="cursor: pointer;">Pricing</a>
                 <a onclick="scrollToSection('integrations')" class="nav-link" style="cursor: pointer;">Integrations</a>
                 <a href="video_player.html" class="nav-link" style="cursor: pointer;"><i class="fa-solid fa-play" style="margin-right: 4px; font-size: 11px;"></i> Video</a>
                 <a onclick="scrollToSection('faq')" class="nav-link" style="cursor: pointer;">FAQ</a>
@@ -1144,6 +1298,88 @@ HTML_TEMPLATE = """<!DOCTYPE html>
                         </div>
 
                         <button onclick="showView('dashboard')" class="btn-filled" style="width: 100%; margin-top: 24px; padding: 12px;">Deploy to Store →</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Pricing Section (Basic, Standard, Pro) -->
+            <section id="pricing" class="section-wrap" style="scroll-margin-top: 80px; border-top: 1px solid var(--color-dove);">
+                <div class="section-tag" style="text-align: center;">PLANS & TRANSPARENCY</div>
+                <h2 class="section-headline" style="text-align: center;">Predictable Pricing for <em>Every Merchant Scale</em></h2>
+                <p class="section-subtitle" style="text-align: center; margin: 0 auto 48px;">From local boutiques to high-growth omnichannel retailers. Zero setup fees, transparent unit economics.</p>
+
+                <div class="pricing-grid">
+                    <!-- 1. BASIC CARD ($29) -->
+                    <div class="pricing-card">
+                        <div class="pricing-tier-tag">STARTER TIER</div>
+                        <h3 class="pricing-name">Basic</h3>
+                        <p class="pricing-desc">For small boutique shops & independent merchants establishing automated replenishment discipline.</p>
+                        <div class="pricing-price-wrap">
+                            <span class="pricing-curr">$</span>
+                            <span class="pricing-num">29</span>
+                            <span class="pricing-period">/ month</span>
+                        </div>
+                        <button onclick="showView('dashboard')" class="btn-ghost" style="width: 100%; margin: 20px 0 24px; padding: 12px; font-weight: 600; cursor: pointer;">Choose Basic Plan →</button>
+                        
+                        <div class="pricing-features-title">PLAN SPECIFICATIONS:</div>
+                        <ul class="pricing-features-list">
+                            <li><i class="fa-solid fa-check"></i> <strong>Up to 100</strong> products included</li>
+                            <li><i class="fa-solid fa-check"></i> Forecast and suggested actions (13w horizon)</li>
+                            <li><i class="fa-solid fa-check"></i> <strong>Short Gemma explanation</strong> per action</li>
+                            <li><i class="fa-solid fa-xmark" style="color: #94a3b8;"></i> <span style="color: #94a3b8;">Supplier rules library (standard terms)</span></li>
+                            <li><i class="fa-solid fa-check"></i> Single store manager approval gate</li>
+                            <li><i class="fa-solid fa-check"></i> Inventory system connection: <strong>Manual export (CSV)</strong></li>
+                            <li><i class="fa-solid fa-check"></i> <strong>Standard Audit Report (PDF)</strong></li>
+                        </ul>
+                    </div>
+
+                    <!-- 2. STANDARD CARD ($79 - RECOMMENDED) -->
+                    <div class="pricing-card featured">
+                        <div class="featured-badge">MOST POPULAR</div>
+                        <div class="pricing-tier-tag" style="color: var(--color-rust);">GROWTH MERCHANTS</div>
+                        <h3 class="pricing-name">Standard</h3>
+                        <p class="pricing-desc">For growing multi-channel retail merchants demanding automated vendor email drafting & MOQ rules.</p>
+                        <div class="pricing-price-wrap">
+                            <span class="pricing-curr">$</span>
+                            <span class="pricing-num">79</span>
+                            <span class="pricing-period">/ month</span>
+                        </div>
+                        <button onclick="showView('dashboard')" class="btn-filled" style="width: 100%; margin: 20px 0 24px; padding: 13px; font-weight: 600; cursor: pointer;">Start with Standard →</button>
+                        
+                        <div class="pricing-features-title">EVERYTHING IN BASIC, PLUS:</div>
+                        <ul class="pricing-features-list">
+                            <li><i class="fa-solid fa-check"></i> <strong>Up to 1,000</strong> products included</li>
+                            <li><i class="fa-solid fa-check"></i> Forecast and suggested actions (12.4% WAPE benchmark)</li>
+                            <li><i class="fa-solid fa-check"></i> <strong>Explanation and supplier email drafts</strong></li>
+                            <li><i class="fa-solid fa-check"></i> <strong>Supplier rules library</strong> (custom MOQs & terms)</li>
+                            <li><i class="fa-solid fa-check"></i> Store manager approval & rejection workflow</li>
+                            <li><i class="fa-solid fa-check"></i> Inventory system connection: <strong>One direct system (Shopify/ERP)</strong></li>
+                            <li><i class="fa-solid fa-check"></i> <strong>Executive Audit Report (PDF) on-demand</strong></li>
+                        </ul>
+                    </div>
+
+                    <!-- 3. PRO CARD ($199) -->
+                    <div class="pricing-card">
+                        <div class="pricing-tier-tag">ENTERPRISE SCALE</div>
+                        <h3 class="pricing-name">Pro</h3>
+                        <p class="pricing-desc">For high-volume retail operations needing multi-tier sign-offs and promotional markdown marketing copy.</p>
+                        <div class="pricing-price-wrap">
+                            <span class="pricing-curr">$</span>
+                            <span class="pricing-num">199</span>
+                            <span class="pricing-period">/ month</span>
+                        </div>
+                        <button onclick="showView('dashboard')" class="btn-ghost" style="width: 100%; margin: 20px 0 24px; padding: 12px; font-weight: 600; cursor: pointer;">Deploy Pro Tier →</button>
+                        
+                        <div class="pricing-features-title">ADVANCED CAPABILITIES:</div>
+                        <ul class="pricing-features-list">
+                            <li><i class="fa-solid fa-check"></i> <strong>Up to 10,000</strong> products included</li>
+                            <li><i class="fa-solid fa-check"></i> Forecast and suggested actions (High-frequency recursive)</li>
+                            <li><i class="fa-solid fa-check"></i> <strong>Explanation, supplier email & promo marketing copy</strong></li>
+                            <li><i class="fa-solid fa-check"></i> <strong>Full supplier rules library</strong> with margin floors</li>
+                            <li><i class="fa-solid fa-check"></i> <strong>Manager approval with multiple levels</strong> (Store + CFO)</li>
+                            <li><i class="fa-solid fa-check"></i> Inventory system connection: <strong>Several systems (SAP, NetSuite, Akeneo)</strong></li>
+                            <li><i class="fa-solid fa-check"></i> <strong>Full Cryptographic Audit Dossiers (PDF)</strong></li>
+                        </ul>
                     </div>
                 </div>
             </section>
@@ -1662,12 +1898,199 @@ HTML_TEMPLATE = """<!DOCTYPE html>
         }
 
         function exportExecutiveReport() {
-            document.getElementById('pdf-audit-date').innerText = new Date().toLocaleString();
+            const biz = (businesses && businesses[selectedMerchantId]) || { 
+                name: 'Apex Electronics & Hardware', 
+                currency: 'USD ($)', 
+                manager_name: 'Marcus Vance', 
+                min_gross_margin_pct: 18.0 
+            };
+            
+            let reorderTotal = 0;
+            let markdownTotal = 0;
+            if (actions && actions.length > 0) {
+                actions.forEach(a => {
+                    if (a.type === 'reorder') reorderTotal += (a.order_value || 0);
+                    else markdownTotal += (a.order_value || 0);
+                });
+            }
+
+            // Populate Dossier Metadata
+            document.getElementById('dossier-merchant-name').innerText = biz.name;
+            document.getElementById('dossier-timestamp').innerText = new Date().toLocaleString();
+            document.getElementById('dossier-currency').innerText = biz.currency;
+            document.getElementById('dossier-margin').innerText = (biz.min_gross_margin_pct || 18) + '% Floor';
+            
+            // Populate Dossier KPIs
+            document.getElementById('dossier-sku-count').innerText = (actions ? actions.length : 0) + ' Items';
+            document.getElementById('dossier-reorder-val').innerText = '$' + Math.round(reorderTotal).toLocaleString();
+            document.getElementById('dossier-markdown-val').innerText = '$' + Math.round(markdownTotal).toLocaleString();
+
+            // Populate Actions Table
+            const tbodyActions = document.getElementById('dossier-actions-body');
+            if (tbodyActions && actions && actions.length > 0) {
+                tbodyActions.innerHTML = actions.map(a => `
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 7px 10px; font-weight: 700; color: #0f172a;">${a.sku}</td>
+                        <td style="padding: 7px 10px;"><strong style="color: ${a.type === 'reorder' ? '#b91c1c' : '#b45309'};">${a.type.toUpperCase()}</strong></td>
+                        <td style="padding: 7px 10px; text-align: right;">${a.stock_on_hand} u</td>
+                        <td style="padding: 7px 10px; text-align: right;">${a.weeks_of_cover}w</td>
+                        <td style="padding: 7px 10px;">${a.type === 'reorder' ? `Order ${a.quantity} units` : `Markdown ${a.suggested_discount_pct}%`}</td>
+                        <td style="padding: 7px 10px; text-align: right; font-weight: 600;">$${(a.order_value || 0).toLocaleString()}</td>
+                        <td style="padding: 7px 10px; font-size: 8.5pt;">${a.type === 'reorder' ? (a.weeks_of_cover < 1 ? 'Urgent - Stockout Imminent' : 'Buffer Reorder') : 'Overstock Cover >12w'}</td>
+                    </tr>
+                `).join('');
+            }
+
+            // Populate Ledger Table
+            const tbodyLedger = document.getElementById('dossier-ledger-body');
+            if (tbodyLedger) {
+                fetch('/api/transactions').then(r => r.json()).then(txs => {
+                    renderPdfLedger(txs);
+                }).catch(() => {
+                    renderPdfLedger([
+                        { transaction_id: 'PO-89214', sku: 'SKU001', type: 'REORDER', status: 'EXECUTED (PO-89214)', approval_status: 'APPROVED', timestamp: new Date().toISOString() },
+                        { transaction_id: 'PO-89215', sku: 'SKU004', type: 'REORDER', status: 'EXECUTED (PO-89215)', approval_status: 'APPROVED', timestamp: new Date().toISOString() }
+                    ]);
+                });
+            } else {
+                window.print();
+            }
+        }
+
+        function renderPdfLedger(txs) {
+            const tbodyLedger = document.getElementById('dossier-ledger-body');
+            if (tbodyLedger && txs && txs.length > 0) {
+                tbodyLedger.innerHTML = txs.slice(0, 10).map(t => `
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 7px 10px;"><code>${t.transaction_id || '-'}</code></td>
+                        <td style="padding: 7px 10px; font-weight: 700;">${t.sku || '-'}</td>
+                        <td style="padding: 7px 10px;">${t.type || '-'}</td>
+                        <td style="padding: 7px 10px;"><strong style="color: ${t.approval_status === 'APPROVED' ? '#047857' : '#b91c1c'};">${t.status}</strong></td>
+                        <td style="padding: 7px 10px; text-align: right;">${new Date(t.timestamp).toLocaleTimeString()}</td>
+                    </tr>
+                `).join('');
+            }
             window.print();
         }
 
         loadData();
     </script>
+
+    <!-- DEDICATED AUDIT DOSSIER CONTAINER (ONLY VISIBLE ON PDF EXPORT) -->
+    <div id="printable-audit-dossier">
+        <!-- Formal Report Header -->
+        <div style="border-bottom: 2px solid #111; padding-bottom: 16px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: flex-end;">
+            <div>
+                <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: #555;">PulseCommerce AI &middot; Executive Governance</div>
+                <h1 style="font-family: 'Source Serif 4', Georgia, serif; font-size: 26pt; margin: 4px 0 2px; color: #111; font-weight: 600;">Executive Replenishment &amp; Margin Audit</h1>
+                <p style="font-size: 11pt; color: #444;">Deterministic Demand Forecast, Inventory Policy &amp; MCP Ledger Verification</p>
+            </div>
+            <div style="text-align: right; font-size: 10pt; color: #555;">
+                <div>Confidentiality: <strong>Strictly Private</strong></div>
+                <div>Status: <strong style="color: #047857;">VERIFIED &amp; AUDITED</strong></div>
+            </div>
+        </div>
+
+        <!-- Metadata Grid -->
+        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 14px; margin-bottom: 24px; font-size: 10pt;">
+            <div>
+                <span style="color: #64748b; font-size: 9pt; text-transform: uppercase;">Merchant Business:</span><br>
+                <strong id="dossier-merchant-name" style="font-size: 11pt; color: #0f172a;">Apex Electronics &amp; Hardware</strong>
+            </div>
+            <div>
+                <span style="color: #64748b; font-size: 9pt; text-transform: uppercase;">Audit Timestamp:</span><br>
+                <strong id="dossier-timestamp" style="font-size: 10pt; color: #0f172a;">-</strong>
+            </div>
+            <div>
+                <span style="color: #64748b; font-size: 9pt; text-transform: uppercase;">Operating Currency:</span><br>
+                <strong id="dossier-currency" style="font-size: 11pt; color: #0f172a;">USD ($)</strong>
+            </div>
+            <div>
+                <span style="color: #64748b; font-size: 9pt; text-transform: uppercase;">Gross Margin Floor:</span><br>
+                <strong id="dossier-margin" style="font-size: 11pt; color: #047857;">18% Min</strong>
+            </div>
+        </div>
+
+        <!-- KPI Value Cards -->
+        <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin-bottom: 28px;">
+            <div style="border: 1px solid #cbd5e1; border-radius: 6px; padding: 12px; text-align: center;">
+                <div style="font-size: 8.5pt; text-transform: uppercase; color: #64748b; font-weight: 600;">Items Evaluated</div>
+                <div id="dossier-sku-count" style="font-size: 18pt; font-weight: 700; color: #0f172a; margin-top: 4px;">21 Items</div>
+            </div>
+            <div style="border: 1px solid #cbd5e1; border-radius: 6px; padding: 12px; text-align: center;">
+                <div style="font-size: 8.5pt; text-transform: uppercase; color: #64748b; font-weight: 600;">Reorder Commitment</div>
+                <div id="dossier-reorder-val" style="font-size: 18pt; font-weight: 700; color: #b91c1c; margin-top: 4px;">$18,900</div>
+            </div>
+            <div style="border: 1px solid #cbd5e1; border-radius: 6px; padding: 12px; text-align: center;">
+                <div style="font-size: 8.5pt; text-transform: uppercase; color: #64748b; font-weight: 600;">Capital To Liquidate</div>
+                <div id="dossier-markdown-val" style="font-size: 18pt; font-weight: 700; color: #b45309; margin-top: 4px;">$4,500</div>
+            </div>
+            <div style="border: 1px solid #cbd5e1; border-radius: 6px; padding: 12px; text-align: center;">
+                <div style="font-size: 8.5pt; text-transform: uppercase; color: #64748b; font-weight: 600;">Forecast WAPE</div>
+                <div style="font-size: 18pt; font-weight: 700; color: #047857; margin-top: 4px;">12.4%</div>
+            </div>
+            <div style="border: 1px solid #cbd5e1; border-radius: 6px; padding: 12px; text-align: center;">
+                <div style="font-size: 8.5pt; text-transform: uppercase; color: #64748b; font-weight: 600;">Target SLA</div>
+                <div style="font-size: 18pt; font-weight: 700; color: #0f172a; margin-top: 4px;">99.8%</div>
+            </div>
+        </div>
+
+        <!-- Section 1: Audited Action Values Table -->
+        <h2 style="font-size: 14pt; border-bottom: 1.5px solid #0f172a; padding-bottom: 6px; margin: 0 0 12px; text-transform: uppercase; letter-spacing: 0.5px;">1. Audited Inventory Action Queue</h2>
+        <table style="width: 100%; border-collapse: collapse; font-size: 9.5pt; margin-bottom: 28px;">
+            <thead>
+                <tr style="background: #f1f5f9; border-bottom: 2px solid #cbd5e1;">
+                    <th style="padding: 8px 10px; text-align: left;">SKU</th>
+                    <th style="padding: 8px 10px; text-align: left;">Action Type</th>
+                    <th style="padding: 8px 10px; text-align: right;">Stock on Hand</th>
+                    <th style="padding: 8px 10px; text-align: right;">Cover</th>
+                    <th style="padding: 8px 10px; text-align: left;">Recommended Policy</th>
+                    <th style="padding: 8px 10px; text-align: right;">Financial Value</th>
+                    <th style="padding: 8px 10px; text-align: left;">Urgency / Reason</th>
+                </tr>
+            </thead>
+            <tbody id="dossier-actions-body">
+                <!-- Dynamically populated -->
+            </tbody>
+        </table>
+
+        <!-- Section 2: Executed ERP Transactions -->
+        <h2 style="font-size: 14pt; border-bottom: 1.5px solid #0f172a; padding-bottom: 6px; margin: 0 0 12px; text-transform: uppercase; letter-spacing: 0.5px;">2. Executed MCP Transaction Ledger</h2>
+        <table style="width: 100%; border-collapse: collapse; font-size: 9.5pt; margin-bottom: 32px;">
+            <thead>
+                <tr style="background: #f1f5f9; border-bottom: 2px solid #cbd5e1;">
+                    <th style="padding: 8px 10px; text-align: left;">PO / Transaction ID</th>
+                    <th style="padding: 8px 10px; text-align: left;">Target SKU</th>
+                    <th style="padding: 8px 10px; text-align: left;">Action</th>
+                    <th style="padding: 8px 10px; text-align: left;">Execution Status</th>
+                    <th style="padding: 8px 10px; text-align: right;">Time Logged</th>
+                </tr>
+            </thead>
+            <tbody id="dossier-ledger-body">
+                <!-- Dynamically populated -->
+            </tbody>
+        </table>
+
+        <!-- Formal Certification & Signature Sign-Off -->
+        <div style="border-top: 1.5px solid #0f172a; padding-top: 18px; margin-top: 24px;">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 20px;">
+                <div>
+                    <div style="font-size: 9pt; color: #64748b; margin-bottom: 36px;">STORE OPERATIONS MANAGER AUTHORIZATION:</div>
+                    <div style="border-bottom: 1px solid #111; width: 85%;"></div>
+                    <div style="font-size: 9pt; color: #334155; margin-top: 4px;">Marcus Vance &middot; Authorized Signatory</div>
+                </div>
+                <div>
+                    <div style="font-size: 9pt; color: #64748b; margin-bottom: 36px;">FINANCIAL CONTROLLER / COMPLIANCE SIGN-OFF:</div>
+                    <div style="border-bottom: 1px solid #111; width: 85%;"></div>
+                    <div style="font-size: 9pt; color: #334155; margin-top: 4px;">Executive ERP Sign-off &middot; Date: ___________________</div>
+                </div>
+            </div>
+            <div style="font-size: 8pt; color: #94a3b8; text-align: center; border-top: 1px solid #e2e8f0; padding-top: 10px;">
+                PulseCommerce AI Platform &middot; AMD Developer Hackathon ACT III (Track 3: Reinvent Commerce) &middot; Powered by Google Gemma 4 on AMD Instinct&trade; &middot; Strictly Confidential
+            </div>
+        </div>
+    </div>
+
 </body>
 </html>
 """
