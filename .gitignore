@@ -39,3 +39,6 @@ ENV/
 *.swo
 .DS_Store
 Thumbs.db
+
+# Video intermediate render files
+video_assets/scenes/

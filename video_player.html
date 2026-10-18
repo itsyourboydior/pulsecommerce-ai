@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PulseCommerce AI - Official Explainer Video (5-Minute Animated Walkthrough)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300;1,8..60,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --color-canvas: #f7f7f8;
+            --color-ink: #17191c;
+            --color-graphite: #4a5568;
+            --color-slate: #94a3b8;
+            --color-card: #ffffff;
+            --color-border: #e8e3da;
+            --color-rust: #5d2a1a;
+            --color-mint: #059669;
+            --color-amber: #d97706;
+            --font-serif: 'Source Serif 4', Georgia, serif;
+            --font-sans: 'Inter', system-ui, sans-serif;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            background-color: var(--color-canvas);
+            color: var(--color-ink);
+            font-family: var(--font-sans);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        header {
+            background: #ffffff;
+            border-bottom: 1px solid var(--color-border);
+            padding: 18px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: var(--color-ink);
+        }
+        .brand-dot {
+            width: 14px;
+            height: 14px;
+            background: var(--color-rust);
+            border-radius: 50%;
+        }
+        .brand-title {
+            font-family: var(--font-serif);
+            font-size: 20px;
+            font-weight: 600;
+        }
+        .nav-links a {
+            color: var(--color-graphite);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            margin-left: 24px;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover { color: var(--color-ink); }
+
+        .container {
+            max-width: 1280px;
+            margin: 40px auto;
+            padding: 0 24px;
+        }
+
+        .hero-text {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+        .badge {
+            display: inline-block;
+            background: #f1ede6;
+            color: var(--color-rust);
+            padding: 5px 14px;
+            border-radius: 9999px;
+            font-size: 12.5px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 12px;
+        }
+        h1 {
+            font-family: var(--font-serif);
+            font-size: 42px;
+            font-weight: 400;
+            letter-spacing: -0.02em;
+            margin-bottom: 8px;
+        }
+        h1 em { font-style: italic; color: var(--color-rust); }
+        .subtitle {
+            font-size: 16px;
+            color: var(--color-graphite);
+            max-width: 720px;
+            margin: 0 auto;
+        }
+
+        .video-layout {
+            display: grid;
+            grid-template-columns: 2.2fr 1fr;
+            gap: 28px;
+            align-items: start;
+        }
+
+        .player-card {
+            background: #ffffff;
+            border-radius: 20px;
+            border: 1px solid var(--color-border);
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+        }
+        video {
+            width: 100%;
+            height: auto;
+            display: block;
+            background: #000;
+        }
+        .player-info {
+            padding: 20px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-top: 1px solid var(--color-border);
+        }
+
+        .btn-download {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--color-ink);
+            color: #ffffff;
+            padding: 10px 20px;
+            border-radius: 9999px;
+            text-decoration: none;
+            font-size: 13.5px;
+            font-weight: 500;
+            transition: opacity 0.2s;
+        }
+        .btn-download:hover { opacity: 0.88; }
+
+        .timeline-card {
+            background: #ffffff;
+            border-radius: 20px;
+            border: 1px solid var(--color-border);
+            padding: 24px;
+        }
+        .timeline-title {
+            font-family: var(--font-serif);
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+        .scene-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .scene-item {
+            padding: 12px 14px;
+            border-radius: 12px;
+            background: #fbf9f5;
+            border: 1px solid transparent;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .scene-item:hover {
+            border-color: var(--color-border);
+            background: #ffffff;
+        }
+        .scene-time {
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--color-rust);
+            text-transform: uppercase;
+        }
+        .scene-name {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--color-ink);
+            margin-top: 2px;
+        }
+        .scene-desc {
+            font-size: 12px;
+            color: var(--color-graphite);
+            margin-top: 2px;
+        }
+
+        .transcript-card {
+            margin-top: 32px;
+            background: #ffffff;
+            border-radius: 20px;
+            border: 1px solid var(--color-border);
+            padding: 28px;
+        }
+        .transcript-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-top: 20px;
+        }
+        .transcript-box {
+            background: #fdfbf7;
+            padding: 16px 20px;
+            border-radius: 12px;
+            border: 1px solid var(--color-border);
+        }
+        .transcript-box h4 {
+            font-size: 13.5px;
+            font-weight: 700;
+            color: var(--color-rust);
+            margin-bottom: 6px;
+        }
+        .transcript-box p {
+            font-size: 13.5px;
+            color: var(--color-graphite);
+            line-height: 1.55;
+        }
+
+        @media (max-width: 992px) {
+            .video-layout { grid-template-columns: 1fr; }
+            .transcript-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="index.html" class="brand">
+            <div class="brand-dot"></div>
+            <span class="brand-title">PulseCommerce AI</span>
+        </a>
+        <div class="nav-links">
+            <a href="index.html"><i class="fa-solid fa-arrow-left" style="margin-right: 6px;"></i> Return to Platform</a>
+            <a href="https://github.com/itsyourboydior/pulsecommerce-ai" target="_blank"><i class="fa-brands fa-github" style="margin-right: 6px;"></i> GitHub</a>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="hero-text">
+            <div class="badge">Official Hackathon Presentation</div>
+            <h1>Autonomous Retail Intelligence <em>Explainer</em></h1>
+            <p class="subtitle">A 5-minute fully animated explainer video covering the problem space, classical statistical forecasting (12.4% WAPE), Google Gemma 4 on AMD Instinct, and auditable human governance.</p>
+        </div>
+
+        <div class="video-layout">
+            <div class="player-card">
+                <video id="mainVideo" controls poster="video_assets/test_frame.png">
+                    <source src="pulsecommerce_explainer_video.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <div class="player-info">
+                    <div>
+                        <strong style="font-size: 15px;">PulseCommerce AI - Master Explainer Video (1080p Full HD)</strong>
+                        <div style="font-size: 12.5px; color: var(--color-slate); margin-top: 2px;">Duration: 5:00 &middot; Voiceover: Neural Professional Male &middot; Modern Flat Illustration</div>
+                    </div>
+                    <a href="pulsecommerce_explainer_video.mp4" download class="btn-download">
+                        <i class="fa-solid fa-download"></i> Download MP4
+                    </a>
+                </div>
+            </div>
+
+            <div class="timeline-card">
+                <div class="timeline-title">Scene Index</div>
+                <div class="scene-list">
+                    <div class="scene-item" onclick="jumpTo(0)">
+                        <div class="scene-time">0:00 &middot; Scene 1</div>
+                        <div class="scene-name">Story &amp; Problem Space</div>
+                        <div class="scene-desc">Maria's boutique shop, stockouts &amp; tied capital.</div>
+                    </div>
+                    <div class="scene-item" onclick="jumpTo(26)">
+                        <div class="scene-time">0:26 &middot; Scene 2</div>
+                        <div class="scene-name">The Copilot Solution</div>
+                        <div class="scene-desc">Forecast &rarr; Decide &rarr; Explain &rarr; Approve.</div>
+                    </div>
+                    <div class="scene-item" onclick="jumpTo(42)">
+                        <div class="scene-time">0:42 &middot; Scene 3</div>
+                        <div class="scene-name">The Four Architecture Pillars</div>
+                        <div class="scene-desc">Statistical ML, Rules, Gemma on AMD, Evolus &amp; MCP.</div>
+                    </div>
+                    <div class="scene-item" onclick="jumpTo(83)">
+                        <div class="scene-time">1:23 &middot; Scene 4 [UI]</div>
+                        <div class="scene-name">Demand Forecast Benchmark</div>
+                        <div class="scene-desc">12.4% WAPE &middot; 7.8% gain vs simple baseline.</div>
+                    </div>
+                    <div class="scene-item" onclick="jumpTo(107)">
+                        <div class="scene-time">1:47 &middot; Scene 5 [UI]</div>
+                        <div class="scene-name">Deterministic Action Queue</div>
+                        <div class="scene-desc">Urgent reorder (420 units) &amp; markdown (20%).</div>
+                    </div>
+                    <div class="scene-item" onclick="jumpTo(129)">
+                        <div class="scene-time">2:09 &middot; Scene 6 [UI]</div>
+                        <div class="scene-name">Gemma 4 on AMD Instinct</div>
+                        <div class="scene-desc">4s per explanation &middot; 40 actions &lt; 2 minutes.</div>
+                    </div>
+                    <div class="scene-item" onclick="jumpTo(154)">
+                        <div class="scene-time">2:34 &middot; Scene 7 [UI]</div>
+                        <div class="scene-name">Human Approval &amp; MCP Sync</div>
+                        <div class="scene-desc">Manager Approve/Reject controls &middot; ERP ledger.</div>
+                    </div>
+                    <div class="scene-item" onclick="jumpTo(170)">
+                        <div class="scene-time">2:50 &middot; Scene 8</div>
+                        <div class="scene-name">Value &amp; Transparent Limits</div>
+                        <div class="scene-desc">Empowering small merchants &middot; Next milestones.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="transcript-card">
+            <h3 style="font-family: var(--font-serif); font-size: 24px; font-weight: 400;">Full Voiceover Narration Script</h3>
+            <p style="font-size: 14px; color: var(--color-slate); margin-top: 4px;">Exact audio transcript synchronized with video scenes.</p>
+
+            <div class="transcript-grid">
+                <div class="transcript-box">
+                    <h4>Scene 1 &middot; Story (0:00&ndash;0:26)</h4>
+                    <p>&ldquo;Imagine Maria, who owns a small shop. On Monday, her best-selling product runs out, and customers leave empty-handed. On Friday, she opens the storage room and finds boxes of something she ordered too much of, and the money is stuck on the shelf. Maria is not bad at business. She is guessing. And every guess costs her money.&rdquo;</p>
+                </div>
+                <div class="transcript-box">
+                    <h4>Scene 2 &middot; The Idea (0:26&ndash;0:42)</h4>
+                    <p>&ldquo;We built an agent for people like Maria. It forecasts what will sell, decides what to reorder and what to discount, explains every decision in plain language, and waits for a human to approve before anything happens.&rdquo;</p>
+                </div>
+                <div class="transcript-box">
+                    <h4>Scene 3 &middot; How It Works (0:42&ndash;1:23)</h4>
+                    <p>&ldquo;There are four parts. First, a forecasting model predicts weekly demand per product. It is a statistical model, not a language model, so the numbers can be measured and defended. Second, simple rules turn the forecast into actions: reorder, discount, or do nothing. Third, Gemma, Google’s open model, runs on AMD GPUs, explains each action, and drafts the supplier email. Fourth, Evolus runs the whole process, with a knowledge library for supplier rules, MCP to update the inventory system, and manager approval.&rdquo;</p>
+                </div>
+                <div class="transcript-box">
+                    <h4>Scene 4 &middot; The Forecast [UI] (1:23&ndash;1:47)</h4>
+                    <p>&ldquo;Here is how we measured the forecast. We tested the model on weeks it had never seen. Its error is 12.4 percent, against 13.5 percent for the best simple baseline, which is 7.8 percent better. This test used synthetic retail data, so read it as a demonstration of the method, not a final accuracy claim.&rdquo;</p>
+                </div>
+                <div class="transcript-box">
+                    <h4>Scene 5 &middot; The Actions [UI] (1:47&ndash;2:09)</h4>
+                    <p>&ldquo;These are example actions. This product is almost out of stock, so the system recommends reordering 420 units, marked urgent. This one has 18 weeks of cover, so it suggests a 20 percent discount. Every action shows the numbers behind it, so nothing is a black box.&rdquo;</p>
+                </div>
+                <div class="transcript-box">
+                    <h4>Scene 6 &middot; Gemma on AMD [UI] (2:09&ndash;2:34)</h4>
+                    <p>&ldquo;Now the agent. For each action, our app starts an Evolus workflow through its API. Gemma, served on AMD, reads the supplier rules from the knowledge library, explains the action, and writes the draft. In this example, one explanation takes about four seconds, and forty actions are processed in under two minutes.&rdquo;</p>
+                </div>
+                <div class="transcript-box">
+                    <h4>Scene 7 &middot; Human Approval [UI] (2:34&ndash;2:50)</h4>
+                    <p>&ldquo;Nothing runs without a person. The manager approves this order, and it is sent to the inventory system through MCP. They reject this discount because the margin is too low. The agent never acts alone.&rdquo;</p>
+                </div>
+                <div class="transcript-box">
+                    <h4>Scene 8 &middot; Value &amp; Limits (2:50&ndash;3:10)</h4>
+                    <p>&ldquo;For Maria, that means fewer empty shelves and less money stuck in slow products. We are honest about the limits: our forecast test used synthetic data, and the next step is connecting to a real inventory system. Thank you for watching.&rdquo;</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function jumpTo(seconds) {
+            const vid = document.getElementById('mainVideo');
+            vid.currentTime = seconds;
+            vid.play();
+        }
+    </script>
+</body>
+</html>

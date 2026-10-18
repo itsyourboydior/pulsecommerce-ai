@@ -19,6 +19,23 @@ Global retail loses over $1.2 trillion annually to stockouts and overstocked inv
 
 ---
 
+## Explainer Video Presentation
+
+A 5-minute fully animated explainer video has been generated and included with this submission:
+- **Watch in Browser**: Open [video_player.html](video_player.html) or visit the live deployment at [https://itsyourboydior.github.io/pulsecommerce-ai/video_player.html](https://itsyourboydior.github.io/pulsecommerce-ai/video_player.html)
+- **Direct Video File**: [pulsecommerce_explainer_video.mp4](pulsecommerce_explainer_video.mp4) (1080p Full HD, 24 fps, H.264/AAC with neural professional voiceover)
+- **Scene Breakdown**:
+  1. Scene 1 (0:00 - 0:26): The Story (Maria's boutique, empty shelves, excess storage)
+  2. Scene 2 (0:26 - 0:42): The Idea (Forecast -> Decide -> Explain -> Approve)
+  3. Scene 3 (0:42 - 1:23): The 4 Pillars (Classical ML, Rules, Gemma on AMD, Evolus & MCP)
+  4. Scene 4 (1:23 - 1:47): The Forecast UI (12.4% WAPE benchmark vs 13.5% baseline, 7.8% gain)
+  5. Scene 5 (1:47 - 2:09): The Actions UI (Urgent 420-unit reorder & 20% markdown)
+  6. Scene 6 (2:09 - 2:34): Gemma on AMD UI (4s per explanation, 40 actions in under 2 minutes)
+  7. Scene 7 (2:34 - 2:50): Human Approval UI (Manager approval gate, MCP ERP execution)
+  8. Scene 8 (2:50 - 3:10): Value & Limits (Empowering merchants, transparent evaluation statement)
+
+---
+
 ## Key Differentiators & Hackathon Track Alignment
 
 ### Track 3 Rule Compliance (Reinvent Commerce)
