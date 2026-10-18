@@ -820,6 +820,66 @@ HTML_TEMPLATE = """<!DOCTYPE html>
             #printable-report-header { display: block !important; border-bottom: 2px solid #000; padding-bottom: 12px; margin-bottom: 24px; }
         }
         #printable-report-header { display: none; }
+            .btn-preset {
+            background: #ffffff;
+            border: 1px solid var(--color-dove);
+            padding: 7px 14px;
+            border-radius: 9999px;
+            font-size: 12.5px;
+            font-weight: 600;
+            color: var(--color-ink);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .btn-preset:hover {
+            border-color: var(--color-ink);
+            background: #f7f7f8;
+        }
+        .btn-preset.active {
+            background: var(--color-ink);
+            color: #ffffff;
+            border-color: var(--color-ink);
+        }
+        .btn-step {
+            width: 28px;
+            height: 28px;
+            border-radius: 6px;
+            border: 1px solid var(--color-dove);
+            background: #ffffff;
+            color: var(--color-ink);
+            font-weight: 700;
+            font-size: 15px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+        .btn-step:hover {
+            background: var(--color-fog);
+            border-color: var(--color-ink);
+        }
+        .num-input {
+            padding: 4px 8px;
+            border: 1px solid var(--color-dove);
+            border-radius: 6px;
+            font-family: var(--font-sohne);
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--color-ink);
+            text-align: right;
+            width: 120px;
+        }
+        .num-input:focus {
+            outline: none;
+            border-color: var(--color-ink);
+        }
+        .faq-head i {
+            transition: transform 0.25s ease;
+        }
+        .faq-row.active .faq-head i {
+            transform: rotate(45deg);
+        }
     </style>
 </head>
 <body>
@@ -840,17 +900,17 @@ HTML_TEMPLATE = """<!DOCTYPE html>
             </a>
 
             <nav class="nav-menu">
-                <a onclick="showView('landing')" class="nav-link active" id="nav-landing">Solutions</a>
-                <a href="#architecture" class="nav-link" onclick="showView('landing')">Architecture</a>
-                <a href="#calculator" class="nav-link" onclick="showView('landing')">ROI Model</a>
-                <a href="#services" class="nav-link" onclick="showView('landing')">Integrations</a>
-                <a href="#faq" class="nav-link" onclick="showView('landing')">FAQ</a>
-                <a onclick="showView('dashboard')" class="nav-link" id="nav-dashboard">Merchant Console</a>
+                <a onclick="scrollToSection('landing')" class="nav-link active" id="nav-landing" style="cursor: pointer;">Solutions</a>
+                <a onclick="scrollToSection('architecture')" class="nav-link" style="cursor: pointer;">Architecture</a>
+                <a onclick="scrollToSection('calculator')" class="nav-link" style="cursor: pointer;">ROI Model</a>
+                <a onclick="scrollToSection('integrations')" class="nav-link" style="cursor: pointer;">Integrations</a>
+                <a href="video_player.html" class="nav-link" style="cursor: pointer;"><i class="fa-solid fa-play" style="margin-right: 4px; font-size: 11px;"></i> Video</a>
+                <a onclick="scrollToSection('faq')" class="nav-link" style="cursor: pointer;">FAQ</a>
+                <a onclick="showView('dashboard')" class="nav-link" id="nav-dashboard" style="cursor: pointer;">Merchant Console</a>
             </nav>
 
             <div class="header-actions">
-                <a onclick="showView('dashboard')" class="btn-ghost">Sign In</a>
-                <a onclick="showView('dashboard')" class="btn-filled">Launch Workspace →</a>
+                <button onclick="showView('dashboard')" class="btn-filled" style="cursor: pointer; padding: 10px 22px; font-size: 14px;">Launch Workspace →</button>
             </div>
         </div>
     </header>
@@ -878,15 +938,16 @@ HTML_TEMPLATE = """<!DOCTYPE html>
                     </p>
 
                     <div class="hero-cta-group">
-                        <a onclick="showView('dashboard')" class="btn-filled" style="padding: 12px 28px; font-size: 15px;">Launch Merchant Console</a>
-                        <a href="#calculator" class="btn-ghost" style="padding: 12px 24px; font-size: 15px;">Calculate Working Capital ROI <i class="fa-solid fa-arrow-right" style="margin-left: 8px; font-size: 12px;"></i></a>
+                        <button onclick="showView('dashboard')" class="btn-filled" style="padding: 12px 28px; font-size: 15px; cursor: pointer;">Launch Merchant Console</button>
+                        <a href="video_player.html" class="btn-ghost" style="padding: 12px 24px; font-size: 15px; border-color: var(--color-rust); color: var(--color-rust); cursor: pointer;"><i class="fa-solid fa-play" style="margin-right: 8px;"></i> Watch 5-Min Video</a>
+                        <button onclick="scrollToSection('calculator')" class="btn-ghost" style="padding: 12px 24px; font-size: 15px; cursor: pointer;">Calculate ROI <i class="fa-solid fa-arrow-right" style="margin-left: 8px; font-size: 12px;"></i></button>
                     </div>
                 </div>
 
                 <!-- Floating UI Cards around Hero (Astral Web Signature Visual) -->
                 <div class="hero-floating-container">
                     <!-- Card 1: Accuracy (Top Left) -->
-                    <div id="card-accuracy" class="floating-ui-card">
+                    <div id="card-accuracy" class="floating-ui-card" onclick="scrollToSection('architecture')" style="cursor: pointer;">
                         <div style="display: flex; gap: 12px; align-items: center;">
                             <div class="chip-icon" style="background: var(--color-mint-pop); color: #064e3b;">
                                 <i class="fa-solid fa-chart-line"></i>
@@ -899,14 +960,14 @@ HTML_TEMPLATE = """<!DOCTYPE html>
                     </div>
 
                     <!-- Card 2: Gemma Latency (Top Right) -->
-                    <div id="card-latency" class="floating-ui-card">
+                    <div id="card-latency" class="floating-ui-card" onclick="showView('dashboard')" style="cursor: pointer;">
                         <div style="font-size: 14px; font-weight: 600; margin-bottom: 2px;">Gemma 4 on AMD</div>
                         <div style="font-family: var(--font-signifier); font-size: 44px; color: var(--color-rust); line-height: 1;">&lt; 1.2s</div>
                         <div style="font-size: 12.5px; color: var(--color-graphite);">ROCm MI300X Acceleration</div>
                     </div>
 
                     <!-- Card 3: Cash Flow (Bottom Left) -->
-                    <div id="card-capital" class="floating-ui-card">
+                    <div id="card-capital" class="floating-ui-card" onclick="scrollToSection('calculator')" style="cursor: pointer;">
                         <div style="display: flex; gap: 12px; align-items: center;">
                             <div class="chip-icon" style="background: var(--color-apricot-wash); color: var(--color-rust);">
                                 <i class="fa-solid fa-coins"></i>
@@ -919,7 +980,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
                     </div>
 
                     <!-- Card 4: Governance (Bottom Right) -->
-                    <div id="card-governance" class="floating-ui-card">
+                    <div id="card-governance" class="floating-ui-card" onclick="showView('dashboard')" style="cursor: pointer;">
                         <div style="display: flex; gap: 12px; align-items: center;">
                             <div class="chip-icon" style="background: var(--color-sky-wash); color: #0369a1;">
                                 <i class="fa-solid fa-shield-halved"></i>
@@ -946,11 +1007,11 @@ HTML_TEMPLATE = """<!DOCTYPE html>
 
                     <div class="db-layout">
                         <div class="db-sidebar">
-                            <div class="sidebar-item active"><i class="fa-solid fa-chart-pie"></i> Dashboard</div>
-                            <div class="sidebar-item"><i class="fa-solid fa-boxes-stacked"></i> Inventory (30)</div>
-                            <div class="sidebar-item"><i class="fa-solid fa-file-invoice"></i> Orders (17)</div>
-                            <div class="sidebar-item"><i class="fa-solid fa-tag"></i> Markdowns (4)</div>
-                            <div class="sidebar-item"><i class="fa-solid fa-shield"></i> MCP ERP Sync</div>
+                            <div class="sidebar-item active" onclick="showView('dashboard')" style="cursor: pointer;"><i class="fa-solid fa-chart-pie"></i> Dashboard</div>
+                            <div class="sidebar-item" onclick="showView('dashboard')" style="cursor: pointer;"><i class="fa-solid fa-boxes-stacked"></i> Inventory (30)</div>
+                            <div class="sidebar-item" onclick="showView('dashboard')" style="cursor: pointer;"><i class="fa-solid fa-file-invoice"></i> Orders (17)</div>
+                            <div class="sidebar-item" onclick="showView('dashboard')" style="cursor: pointer;"><i class="fa-solid fa-tag"></i> Markdowns (4)</div>
+                            <div class="sidebar-item" onclick="showView('dashboard')" style="cursor: pointer;"><i class="fa-solid fa-shield"></i> MCP ERP Sync</div>
                         </div>
 
                         <div class="db-main">
@@ -959,7 +1020,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
                                     <h3 style="font-family: var(--font-signifier); font-size: 20px; font-weight: 400;">Demand Curve vs 13-Week Forecast</h3>
                                     <p style="font-size: 12.5px; color: var(--color-graphite);">HistGradientBoosting recursive prediction across SKU001</p>
                                 </div>
-                                <span class="badge-reorder">WAPE: 12.4% (Pass)</span>
+                                <span class="badge-reorder" onclick="scrollToSection('architecture')" style="cursor: pointer;" title="Click to view benchmark methodology">WAPE: 12.4% (Pass)</span>
                             </div>
                             <div style="height: 230px;">
                                 <canvas id="heroPreviewChart"></canvas>
@@ -987,6 +1048,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
                             <li><i class="fa-solid fa-check" style="color: #059669; margin-right: 6px;"></i> 21.6% lift vs seasonal naive</li>
                             <li><i class="fa-solid fa-check" style="color: #059669; margin-right: 6px;"></i> 13-week continuous horizon</li>
                         </ul>
+                        <button onclick="showView('dashboard')" class="btn-ghost" style="width: 100%; margin-top: 18px; padding: 10px 14px; font-size: 13.5px; cursor: pointer;">View Live Forecast Curves →</button>
                     </div>
 
                     <div class="service-card">
@@ -1000,6 +1062,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
                             <li><i class="fa-solid fa-check" style="color: #059669; margin-right: 6px;"></i> Net 30/15 SLA enforcement</li>
                             <li><i class="fa-solid fa-check" style="color: #059669; margin-right: 6px;"></i> Grounded, zero-guess prompts</li>
                         </ul>
+                        <button onclick="showView('dashboard')" class="btn-ghost" style="width: 100%; margin-top: 18px; padding: 10px 14px; font-size: 13.5px; cursor: pointer;">Inspect Gemma 4 Reasoning & POs →</button>
                     </div>
 
                     <div class="service-card">
@@ -1013,19 +1076,20 @@ HTML_TEMPLATE = """<!DOCTYPE html>
                             <li><i class="fa-solid fa-check" style="color: #059669; margin-right: 6px;"></i> Cryptographic PO generation</li>
                             <li><i class="fa-solid fa-check" style="color: #059669; margin-right: 6px;"></i> Live ERP transaction ledger</li>
                         </ul>
+                        <button onclick="showView('dashboard')" class="btn-ghost" style="width: 100%; margin-top: 18px; padding: 10px 14px; font-size: 13.5px; cursor: pointer;">Open MCP Execution Ledger →</button>
                     </div>
                 </div>
 
                 <!-- Ecosystem strip -->
-                <div style="margin-top: 60px;">
-                    <div style="font-size: 12.5px; font-weight: 600; text-transform: uppercase; color: var(--color-slate); text-align: center; margin-bottom: 18px;">Seamless Ecosystem Synchronization</div>
+                <div id="integrations" style="margin-top: 60px; scroll-margin-top: 100px;">
+                    <div style="font-size: 12.5px; font-weight: 600; text-transform: uppercase; color: var(--color-slate); text-align: center; margin-bottom: 18px;">Seamless Ecosystem Synchronization (Click to test integration)</div>
                     <div class="integration-strip">
-                        <div class="int-card"><i class="fa-brands fa-shopify"></i> Shopify Plus</div>
-                        <div class="int-card"><i class="fa-brands fa-magento"></i> Adobe Commerce</div>
-                        <div class="int-card"><i class="fa-solid fa-server"></i> NetSuite / SAP</div>
-                        <div class="int-card"><i class="fa-solid fa-tag"></i> Akeneo PIM</div>
-                        <div class="int-card"><i class="fa-solid fa-microchip"></i> AMD Instinct</div>
-                        <div class="int-card"><i class="fa-solid fa-robot"></i> Google Gemma 4</div>
+                        <div class="int-card" onclick="showToast('Shopify Plus: Bi-directional inventory & catalog synchronization ready.')" style="cursor: pointer;"><i class="fa-brands fa-shopify"></i> Shopify Plus</div>
+                        <div class="int-card" onclick="showToast('Adobe Commerce (Magento): Enterprise POS sync active.')" style="cursor: pointer;"><i class="fa-brands fa-magento"></i> Adobe Commerce</div>
+                        <div class="int-card" onclick="showToast('NetSuite / SAP ERP: Automated purchase orders dispatched via MCP.')" style="cursor: pointer;"><i class="fa-solid fa-server"></i> NetSuite / SAP</div>
+                        <div class="int-card" onclick="showToast('Akeneo PIM: Multi-attribute product governance connected.')" style="cursor: pointer;"><i class="fa-solid fa-tag"></i> Akeneo PIM</div>
+                        <div class="int-card" onclick="showToast('AMD Instinct MI300X: vLLM accelerator ready with &lt;1.2s inference.')" style="cursor: pointer;"><i class="fa-solid fa-microchip"></i> AMD Instinct</div>
+                        <div class="int-card" onclick="showToast('Google Gemma 4: Grounded executive reasoning model operational.')" style="cursor: pointer;"><i class="fa-solid fa-robot"></i> Google Gemma 4</div>
                     </div>
                 </div>
             </section>
@@ -1323,7 +1387,9 @@ HTML_TEMPLATE = """<!DOCTYPE html>
             const navLink = document.getElementById('nav-' + viewId);
             if (navLink) navLink.classList.add('active');
 
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            if (viewId === 'dashboard') {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
 
             if (viewId === 'landing' || viewId === 'dashboard') {
                 setTimeout(initHeroChart, 100);
@@ -1334,22 +1400,131 @@ HTML_TEMPLATE = """<!DOCTYPE html>
             el.classList.toggle('active');
         }
 
-        function updateROI() {
-            const rev = parseFloat(document.getElementById('slider-rev').value);
-            const stockoutPct = parseFloat(document.getElementById('slider-stockout').value) / 100.0;
-            const overstockPct = parseFloat(document.getElementById('slider-overstock').value) / 100.0;
+        function scrollToSection(sectionId) {
+            showView('landing');
+            if (sectionId === 'landing') {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                return;
+            }
+            setTimeout(() => {
+                const el = document.getElementById(sectionId);
+                if (el) {
+                    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            }, 60);
+        }
 
-            document.getElementById('slider-rev-val').innerText = '$' + rev.toLocaleString();
-            document.getElementById('slider-stockout-val').innerText = (stockoutPct * 100).toFixed(0) + '%';
-            document.getElementById('slider-overstock-val').innerText = (overstockPct * 100).toFixed(0) + '%';
+        function showToast(msg) {
+            let t = document.getElementById('toast-notification');
+            if (!t) {
+                t = document.createElement('div');
+                t.id = 'toast-notification';
+                t.style.cssText = 'position: fixed; bottom: 24px; right: 24px; background: #17191C; color: #FFFFFF; padding: 14px 22px; border-radius: 9999px; font-size: 14px; z-index: 99999; box-shadow: 0 10px 25px rgba(0,0,0,0.25); transition: all 0.3s; opacity: 0; transform: translateY(10px); pointer-events: none; font-family: var(--font-sohne); display: flex; align-items: center; gap: 8px;';
+                document.body.appendChild(t);
+            }
+            t.innerHTML = '<i class="fa-solid fa-circle-check" style="color: #55db9c; font-size: 16px;"></i> ' + msg;
+            t.style.opacity = '1';
+            t.style.transform = 'translateY(0)';
+            setTimeout(() => {
+                t.style.opacity = '0';
+                t.style.transform = 'translateY(10px)';
+            }, 3000);
+        }
 
-            const stockoutSaved = rev * stockoutPct * 0.40;
-            const overstockFreed = (rev * 0.35) * overstockPct * 0.30;
+        function syncFromSlider(type) {
+            if (type === 'rev') {
+                const val = document.getElementById('slider-rev').value;
+                document.getElementById('input-rev').value = val;
+            } else if (type === 'stockout') {
+                const val = document.getElementById('slider-stockout').value;
+                document.getElementById('input-stockout').value = val;
+            } else if (type === 'overstock') {
+                const val = document.getElementById('slider-overstock').value;
+                document.getElementById('input-overstock').value = val;
+            }
+            updateROI();
+        }
+
+        function syncFromInput(type) {
+            if (type === 'rev') {
+                let val = parseFloat(document.getElementById('input-rev').value) || 250000;
+                if (val < 100000) val = 100000;
+                document.getElementById('slider-rev').value = Math.min(val, 10000000);
+            } else if (type === 'stockout') {
+                let val = parseFloat(document.getElementById('input-stockout').value) || 1;
+                document.getElementById('slider-stockout').value = Math.min(val, 25);
+            } else if (type === 'overstock') {
+                let val = parseFloat(document.getElementById('input-overstock').value) || 2;
+                document.getElementById('slider-overstock').value = Math.min(val, 35);
+            }
+            updateROI();
+        }
+
+        function stepVal(type, delta) {
+            if (type === 'rev') {
+                let cur = parseFloat(document.getElementById('input-rev').value) || 2500000;
+                cur = Math.max(100000, cur + delta);
+                document.getElementById('input-rev').value = cur;
+                document.getElementById('slider-rev').value = Math.min(cur, 10000000);
+            } else if (type === 'stockout') {
+                let cur = parseFloat(document.getElementById('input-stockout').value) || 8;
+                cur = Math.max(1, Math.min(30, cur + delta));
+                document.getElementById('input-stockout').value = cur;
+                document.getElementById('slider-stockout').value = cur;
+            } else if (type === 'overstock') {
+                let cur = parseFloat(document.getElementById('input-overstock').value) || 15;
+                cur = Math.max(2, Math.min(40, cur + delta));
+                document.getElementById('input-overstock').value = cur;
+                document.getElementById('slider-overstock').value = cur;
+            }
+            updateROI(true);
+        }
+
+        function setPreset(rev, stockout, overstock, btn) {
+            document.getElementById('slider-rev').value = Math.min(rev, 10000000);
+            document.getElementById('input-rev').value = rev;
+            document.getElementById('slider-stockout').value = stockout;
+            document.getElementById('input-stockout').value = stockout;
+            document.getElementById('slider-overstock').value = overstock;
+            document.getElementById('input-overstock').value = overstock;
+
+            document.querySelectorAll('.btn-preset').forEach(b => b.classList.remove('active'));
+            if (btn) btn.classList.add('active');
+
+            updateROI(true);
+        }
+
+        function updateROI(highlight = false) {
+            const rev = parseFloat(document.getElementById('input-rev')?.value || document.getElementById('slider-rev')?.value || 2500000);
+            const stockoutPct = (parseFloat(document.getElementById('input-stockout')?.value || document.getElementById('slider-stockout')?.value || 8)) / 100.0;
+            const overstockPct = (parseFloat(document.getElementById('input-overstock')?.value || document.getElementById('slider-overstock')?.value || 15)) / 100.0;
+
+            const stockoutSaved = rev * stockoutPct * 0.45;
+            const overstockFreed = (rev * 0.30) * overstockPct * 0.35;
             const total = stockoutSaved + overstockFreed;
+            const marginLift = ((total / rev) * 100).toFixed(1);
 
-            document.getElementById('roi-total').innerText = '$' + Math.round(total).toLocaleString();
-            document.getElementById('roi-stockout').innerText = '$' + Math.round(stockoutSaved).toLocaleString() + '/yr';
-            document.getElementById('roi-overstock').innerText = '$' + Math.round(overstockFreed).toLocaleString() + '/yr';
+            const totalEl = document.getElementById('roi-total');
+            if (totalEl) {
+                totalEl.innerText = '$' + Math.round(total).toLocaleString();
+                if (highlight) {
+                    totalEl.style.transform = 'scale(1.08)';
+                    setTimeout(() => { totalEl.style.transform = 'scale(1)'; }, 200);
+                }
+            }
+
+            const stockoutEl = document.getElementById('roi-stockout');
+            if (stockoutEl) stockoutEl.innerText = '$' + Math.round(stockoutSaved).toLocaleString() + '/yr';
+
+            const overstockEl = document.getElementById('roi-overstock');
+            if (overstockEl) overstockEl.innerText = '$' + Math.round(overstockFreed).toLocaleString() + '/yr';
+
+            const marginEl = document.getElementById('roi-margin');
+            if (marginEl) marginEl.innerText = '+' + marginLift + '% Margin Lift';
+
+            const paybackDays = Math.max(7, Math.round(365 / (total / 6000)));
+            const paybackEl = document.getElementById('roi-payback');
+            if (paybackEl) paybackEl.innerText = '< ' + paybackDays + ' Days';
         }
 
         async function loadData() {
@@ -1363,7 +1538,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
             renderActionList();
             if (actions.length > 0) selectAction(0);
             loadLedger();
-            setTimeout(initHeroChart, 150);
+            setTimeout(initHeroChart, 150); updateROI();
         }
 
         function populateMerchantSelector() {
